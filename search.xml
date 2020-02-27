@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>pytorch简介及环境搭建</title>
+      <link href="/2020/02/27/pytorch1-1/"/>
+      <url>/2020/02/27/pytorch1-1/</url>
+      
+        <content type="html"><![CDATA[<div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1417442423&auto=1&height=66"></iframe></div><p>PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言处理等应用程序。</p><h1 id="1-Pytorch简介"><a href="#1-Pytorch简介" class="headerlink" title="1.Pytorch简介"></a>1.Pytorch简介</h1><hr><p>很多人都会拿PyTorch和Google的Tensorflow进行比较，它们是最火的两个深度学习框架了。<br>谈到PyTorch，我们应该先说<a href="http://torch.ch" target="_blank" rel="noopener">Torch</a>。Torch是一个与Numpy类似的张量（Tensor）操作库，与Numpy不同的是Torch对GPU支持的很好，Lua是Torch的上层包装。<br>PyTorch和Torch使用包含所有相同性能的C库：TH, THC, THNN, THCUNN，并且它们将继续共享这些库。<br>这样的回答就很明确了，其实PyTorch和Torch都使用的是相同的底层，只是使用了不同的上层包装语言。</p><p>PyTorch是一个Python包，提供两个高级功能：</p><ul><li>具有强大的GPU加速的张量计算（如NumPy）</li><li>包含自动求导系统的的深度神经网络</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul><li>PyTorch是相当简洁优雅且高效快速的框架</li><li>设计追求最少的封装，尽量避免重复造轮子</li><li>算是所有的框架中面向对象设计的最优雅的一个，设计最符合人们的思维，它让用户尽可能地专注于实现自己的想法</li><li>大佬支持,与google的Tensorflow类似，FAIR的支持足以确保PyTorch获得持续的开发更新</li><li>不错的的文档（相比FB的其他项目，PyTorch的文档简直算是完善了，参考Thrift），PyTorch作者亲自维护的论坛 供用户交流和求教问题</li><li>入门简单</li></ul><h1 id="2-Pytorch环境搭建"><a href="#2-Pytorch环境搭建" class="headerlink" title="2.Pytorch环境搭建"></a>2.Pytorch环境搭建</h1><p>PyTorch的安装十分简单，根据<a href="https://pytorch.org/" target="_blank" rel="noopener">PyTorch官网</a>，对系统选择和安装方式等灵活选择即可。<br>这里以<a href="https://www.anaconda.com/" target="_blank" rel="noopener">anaconda</a>为例，简单的说一下步骤和要点。<br>国内安装anaconda建议使用<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener">清华</a>镜像。</p><h2 id="2-1安装Pytorch"><a href="#2-1安装Pytorch" class="headerlink" title="2.1安装Pytorch"></a>2.1安装Pytorch</h2><p>pytorch的安装经过了几次变化，请大家以官网的安装命令为准。另外需要说明的就是在1.2版本以后，pytorch只支持cuda 9.2以上了，所以需要对cuda进行升级，目前测试大部分显卡都可以用，包括笔记本的MX250也是可以顺利升级到cuda 10.1。</p><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#默认 使用 cuda10.1</span>pip <span class="token function">install</span> torch<span class="token operator">==</span><span class="token operator">=</span>1.4.0 torchvision<span class="token operator">==</span><span class="token operator">=</span>0.5.0 -f https://download.pytorch.org/whl/torch_stable.html<span class="token comment" spellcheck="true">#cuda 9.2</span>pip <span class="token function">install</span> torch<span class="token operator">==</span>1.4.0+cu92 torchvision<span class="token operator">==</span>0.5.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html<span class="token comment" spellcheck="true">#cpu版本</span>pip <span class="token function">install</span> torch<span class="token operator">==</span>1.4.0+cpu torchvision<span class="token operator">==</span>0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>验证输入python 进入</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torchtorch<span class="token punctuation">.</span>__version__<span class="token comment" spellcheck="true"># 得到结果'1.4.0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="2-2配置Jupyter-Notebook"><a href="#2-2配置Jupyter-Notebook" class="headerlink" title="2.2配置Jupyter Notebook"></a>2.2配置Jupyter Notebook</h2><p>新建的环境是没有安装安装ipykernel的所以无法注册到Jupyter Notebook中，所以先要准备下环境</p><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#安装ipykernel</span>conda <span class="token function">install</span> ipykernel<span class="token comment" spellcheck="true">#写入环境</span>python -m ipykernel <span class="token function">install</span>  --name pytorch --display-name <span class="token string">"Pytorch for Deeplearning"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>下一步就是定制 Jupyter Notebook</p><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#切换回基础环境</span>activate base<span class="token comment" spellcheck="true">#创建jupyter notebook配置文件</span>jupyter notebook --generate-config<span class="token comment" spellcheck="true">## 这里会显示创建jupyter_notebook_config.py的具体位置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>打开文件，修改</p><pre><code>c.NotebookApp.notebook_dir = &#39;&#39; 默认目录位置c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可能报错</code></pre><h2 id="2-3-测试"><a href="#2-3-测试" class="headerlink" title="2.3 测试"></a>2.3 测试</h2><p>至此 Pytorch 的开发环境安装完成，可以在开始菜单中打开Jupyter Notebook 在New 菜单中创建文件时选择<code>Pytorch for Deeplearning</code> 创建PyTorch的相关开发环境了</p><h2 id="2-4-问题解决"><a href="#2-4-问题解决" class="headerlink" title="2.4 问题解决"></a>2.4 问题解决</h2><h3 id="问题1：启动python提示编码错误"><a href="#问题1：启动python提示编码错误" class="headerlink" title="问题1：启动python提示编码错误"></a>问题1：启动python提示编码错误</h3><p>删除 .python_history <a href="http://tantai.org/posts/install-keras-pytorch-jupyter-notebook-Anaconda-window-10-cpu/" target="_blank" rel="noopener">来源</a></p><h3 id="问题2-默认目录设置不起效"><a href="#问题2-默认目录设置不起效" class="headerlink" title="问题2 默认目录设置不起效"></a>问题2 默认目录设置不起效</h3><p>打开快捷方式，看看快捷方式是否跟这个截图一样，如果是则删除 <code>%USERPROFILE%</code> 改参数会覆盖掉notebook_dir设置，导致配置不起效<br><img src="pic1.png" alt="Alt text"></p><p>本文参考PyTorch中文手册<br>如果你还发现其他问题，请直接留言</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Pytorch </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>article title</title>
       <link href="/2020/02/25/article-title/"/>
       <url>/2020/02/25/article-title/</url>

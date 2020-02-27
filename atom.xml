@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xxxnhb.github.io/"/>
-  <updated>2020-02-25T11:44:33.332Z</updated>
+  <updated>2020-02-27T10:07:44.894Z</updated>
   <id>https://xxxnhb.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pytorch简介及环境搭建</title>
+    <link href="https://xxxnhb.github.io/2020/02/27/pytorch1-1/"/>
+    <id>https://xxxnhb.github.io/2020/02/27/pytorch1-1/</id>
+    <published>2020-02-27T09:08:59.000Z</published>
+    <updated>2020-02-27T10:07:44.894Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Pytorch" scheme="https://xxxnhb.github.io/categories/Pytorch/"/>
+    
+    
+      <category term="Pytorch" scheme="https://xxxnhb.github.io/tags/Pytorch/"/>
+    
+  </entry>
   
   <entry>
     <title>article title</title>
