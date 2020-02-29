@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xxxnhb.github.io/"/>
-  <updated>2020-02-27T10:07:44.894Z</updated>
+  <updated>2020-02-29T15:36:55.481Z</updated>
   <id>https://xxxnhb.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>pytorch简介及环境搭建</title>
-    <link href="https://xxxnhb.github.io/2020/02/27/pytorch1-1/"/>
-    <id>https://xxxnhb.github.io/2020/02/27/pytorch1-1/</id>
-    <published>2020-02-27T09:08:59.000Z</published>
-    <updated>2020-02-27T10:07:44.894Z</updated>
+    <title>PyTorch深度学习：快速入门</title>
+    <link href="https://xxxnhb.github.io/2020/02/28/pytorch1-2/"/>
+    <id>https://xxxnhb.github.io/2020/02/28/pytorch1-2/</id>
+    <published>2020-02-28T00:03:22.000Z</published>
+    <updated>2020-02-29T15:36:55.481Z</updated>
     
     <summary type="html">
     
@@ -35,10 +35,36 @@
     
     </summary>
     
-      <category term="Pytorch" scheme="https://xxxnhb.github.io/categories/Pytorch/"/>
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
     
     
-      <category term="Pytorch" scheme="https://xxxnhb.github.io/tags/Pytorch/"/>
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pytorch简介及环境搭建</title>
+    <link href="https://xxxnhb.github.io/2020/02/27/pytorch1-1/"/>
+    <id>https://xxxnhb.github.io/2020/02/27/pytorch1-1/</id>
+    <published>2020-02-27T09:08:59.000Z</published>
+    <updated>2020-02-29T15:36:55.481Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
     
   </entry>
   
