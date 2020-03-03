@@ -4,18 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="PyTorch深度学习：快速入门, SYSU 刘金朋">
+    <meta name="keywords" content="PyTorch:数据加载和预处理, SYSU 刘金朋">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="
-
-PyTorch 深度学习:60分钟快速入门 （官方）本章为官方网站的Deep Learning with PyTorch: A 60 Minute Blitz的中文翻译
-目录
-张量
-Autograd: 自动求导
-神经网络
-训练一个分类器">
+    <meta name="description" content="数据加载和预处理PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。并且torchvision已经预先实现了常用图像数据集，包括前面使用的CIDFAR-10,Image">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +16,7 @@ Autograd: 自动求导
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>PyTorch深度学习：快速入门 | 刘金朋的博客</title>
+    <title>PyTorch:数据加载和预处理 | 刘金朋的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -265,13 +258,13 @@ Autograd: 自动求导
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        PyTorch深度学习：快速入门
+                        PyTorch:数据加载和预处理
                     </div>
                 </div>
             </div>
@@ -317,7 +310,7 @@ Autograd: 自动求导
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-28
+                    2020-03-03
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -331,14 +324,14 @@ Autograd: 自动求导
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    116
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
                 
@@ -349,18 +342,95 @@ Autograd: 自动求导
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1426087898&auto=1&height=66"></iframe></div>
+                <h1 id="数据加载和预处理"><a href="#数据加载和预处理" class="headerlink" title="数据加载和预处理"></a>数据加载和预处理</h1><p>PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。并且torchvision已经预先实现了常用图像数据集，包括前面使用的CIDFAR-10,ImageNet、COCO、MNIST、LSUN等数据，可以通过torchvison.datasets方便的调用</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 首先要引入相关的包</span>
+<span class="token keyword">import</span> torch
+<span class="token comment" spellcheck="true"># 打印一下版本</span>
+torch<span class="token punctuation">.</span>__version__<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>&#39;1.3.0&#39;</code></pre><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1><p>Dataset是一个抽象类，为了能够方便的读取，需要将使用的数据包装为Dataset类。自定义的Dataset需要继承它并且实现两个成员方法：<br>1.<strong>getitem</strong>()该方法定义用索引（0到len（self））获取一条数据或一个样本<br>2.<strong>len</strong>()该方法返回数据集的总长度<br>下面我们使用kaggel上的一个竞赛<a href="https://www.kaggle.com/c/bluebook-for-bulldozers/data" target="_blank" rel="noopener">bluebook for buildozers</a>自定义一个数据集，为了方便介绍，我们使用里面的数据字典来做说明</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 引用</span>
+<span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> Dataset
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#定义一个数据集</span>
+<span class="token keyword">class</span> <span class="token class-name">BulldozerDataset</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""数据集演示"""</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> csv_file<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""实现初始化方法，在初始化的时候将数据读载入"""</span>
+        self<span class="token punctuation">.</span>df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>csv_file<span class="token punctuation">)</span>
 
-<h1 id="PyTorch-深度学习-60分钟快速入门-（官方）"><a href="#PyTorch-深度学习-60分钟快速入门-（官方）" class="headerlink" title="PyTorch 深度学习:60分钟快速入门 （官方）"></a>PyTorch 深度学习:60分钟快速入门 （官方）</h1><p>本章为官方网站的<a href="https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html" target="_blank" rel="noopener">Deep Learning with PyTorch: A 60 Minute Blitz</a>的中文翻译</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
-<li><a href="https://github.com/xxxnhb/xxxnhb.github.io/blob/master/2020/02/28/pytorch1-2/1_tensor_tutorial.ipynb" title="1_tensor_tutorial.ipynb" target="_blank" rel="noopener">张量</a></li>
-<li><a href="https://github.com/xxxnhb/xxxnhb.github.io/blob/master/2020/02/28/pytorch1-2/2_autograd_tutorial.ipynb" title="2_autograd_tutorial.ipynb" target="_blank" rel="noopener">Autograd: 自动求导</a></li>
-<li><a href="https://github.com/xxxnhb/xxxnhb.github.io/blob/master/2020/02/28/pytorch1-2/3_neural_networks_tutorial.ipynb" title="3_neural_networks_tutorial.ipynb" target="_blank" rel="noopener">神经网络</a></li>
-<li><a href="https://github.com/xxxnhb/xxxnhb.github.io/blob/master/2020/02/28/pytorch1-2/4_cifar10_tutorial.ipynb" title="4_cifar10_tutorial.ipynb" target="_blank" rel="noopener">训练一个分类器</a></li>
-<li><a href="https://github.com/zergtant/pytorch-handbook/blob/master/chapter1/5_data_parallel_tutorial.ipynb" target="_blank" rel="noopener">选读：数据并行处理</a></li>
-</ol>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>本章中的所有图片均来自于PyTorch官网，版权归PyTorch所有.<br>为方便读者理解，相关内容以传送门形式在上方列出。</p>
-<p><em>*</em> 本篇文章来自<a href="https://github.com/zergtant/pytorch-handbook/blob/master/chapter1/1.3-deep-learning-with-pytorch-60-minute-blitz.md" target="_blank" rel="noopener">Pytorch-handbook</a></p>
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        返回df长度
+        '''</span>
+        <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>df<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> idx<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        根据idx返回一行数据
+        '''</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>SalePrice<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>至此，我们的数据集已经定义完成了，我们可以实例化一个对象访问它</p>
+<pre class="line-numbers language-python"><code class="language-python">ds_demo <span class="token operator">=</span> BulldozerDataset<span class="token punctuation">(</span><span class="token string">'./bluebook-for-bulldozers/median_benchmark.csv'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 实现了__len__方法所以可以直接使用len获取数据总数</span>
+len<span class="token punctuation">(</span>ds_demo<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>11573</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#用索引可以直接访问对应的数据，对应__getitem__方法</span>
+ds_demo<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>24000.0</code></pre><p>自定义的数据集已经创建好了，下面我们使用官方提供的数据载入器，读取数据</p>
+<h1 id="Dataloader"><a href="#Dataloader" class="headerlink" title="Dataloader"></a>Dataloader</h1><p>DataLoader为我们提供了对Dataset的读取操作，常用参数有：batch_size(每个batch的大小）、shuffle(是否进行shuffle操作)、num_workers(加载数据的时候使用几个子进程)。下面做一个简单的操作</p>
+<pre class="line-numbers language-python"><code class="language-python">dl <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>ds_demo<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>num_workers<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>DataLoader返回的是一个可迭代对象，我们可以使用迭代器分词获取数据</p>
+<pre class="line-numbers language-python"><code class="language-python">idata <span class="token operator">=</span> iter<span class="token punctuation">(</span>dl<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>next<span class="token punctuation">(</span>idata<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>tensor([24000., 24000., 24000., 24000., 24000., 24000., 24000., 24000., 24000.,
+        24000.])</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> i<span class="token punctuation">,</span> data <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>dl<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>data<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">#为了节约空间，这里只循环一遍</span>
+    <span class="token keyword">break</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>0 tensor([24000., 24000., 24000., 24000., 24000., 24000., 24000., 24000., 24000.,
+        24000.])</code></pre><p>我们以及可以使用dataset定义数据集，并使用Datalorder载入和遍历数据集，除了这些外，PyTorch还提供能torchvision的计算机视觉扩展包，里面封装了torchvision</p>
+<h1 id="torchvision"><a href="#torchvision" class="headerlink" title="torchvision"></a>torchvision</h1><p>torchvision是PyTorch中专门用来处理图像的库，Pytorch官网的安装教程中最后的pip install torchvision就是安装这个包</p>
+<h2 id="torchvision-datasets"><a href="#torchvision-datasets" class="headerlink" title="torchvision.datasets"></a>torchvision.datasets</h2><p>torchvision.datasets可以理解为PyTorch团队自定义的dataset，这些dataset帮我们提前处理好了很多的图片数据集，我们拿来就可以直接使用</p>
+<ul>
+<li>MNIST    </li>
+<li>COCO  </li>
+<li>Captions  </li>
+<li>Detection  </li>
+<li>LSUN  </li>
+<li>ImageFolder  </li>
+<li>Imagenet-12  </li>
+<li>CIFAR  </li>
+<li>STL10  </li>
+<li>SVHN  </li>
+<li>Photo Tour我们可以直接使用，示例如下：</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>datasets <span class="token keyword">as</span> datasets
+trainset <span class="token operator">=</span> datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span>root<span class="token operator">=</span><span class="token string">'./data'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">#表示MNIST数据的加载的目录</span>
+                         train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">#表示是否加载数据库的训练集，false的时候加载测试集</span>
+                         download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">#表示是否自动下载MNIST数据集</span>
+                         transform<span class="token operator">=</span>None<span class="token punctuation">,</span><span class="token comment" spellcheck="true">#表示是否需要对数据进行预处理，none为不进行预处理</span>
+                         <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>Files already downloaded and verified</code></pre><h3 id="torchvision-models"><a href="#torchvision-models" class="headerlink" title="torchvision.models"></a>torchvision.models</h3><p>torchvision不仅提供了常用图片数据集，还提供了训练好的模型，可以加载之后，直接使用，或者再进行迁移学习torchvision.models模块的子模块中包含以下模型结构。</p>
+<ul>
+<li>AlexNet</li>
+<li>VGG</li>
+<li>ResNet</li>
+<li>SqueezeNet</li>
+<li>DenseNet</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#我们直接可以使用训练好的模型，当然这个与datasets相同，都是需要从服务器下载的</span>
+<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>models <span class="token keyword">as</span> models
+resnet18 <span class="token operator">=</span> models<span class="token punctuation">.</span>resnet18<span class="token punctuation">(</span>pretrained<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="torchvision-transfroms"><a href="#torchvision-transfroms" class="headerlink" title="torchvision.transfroms"></a>torchvision.transfroms</h3><p>transforms模块提供了一般的图像转换操作类，用作数据处理和数据增强</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms <span class="token keyword">as</span> transforms
+transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    transforms<span class="token punctuation">.</span>RandomCrop<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">#先四周填充0，再把图像随机裁剪成32*32</span>
+    transforms<span class="token punctuation">.</span>RandomHorizontalFlip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 图像一半的改了旋转，一半的概率不旋转</span>
+    transforms<span class="token punctuation">.</span>RandomRotation<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">45</span><span class="token punctuation">,</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">#随机旋转</span>
+    transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.4914</span><span class="token punctuation">,</span> <span class="token number">0.4822</span><span class="token punctuation">,</span> <span class="token number">0.4465</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0.229</span><span class="token punctuation">,</span><span class="token number">0.224</span><span class="token punctuation">,</span> <span class="token number">0.225</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">#R、G、B每层的归一化用到的均值和方差</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>(0.485, 0.456, 0.406), (0.2023, 0.1994, 0.2010) 这几个数字的理解可以参考<a href="https://discuss.pytorch.org/t/normalization-in-the-mnist-example/457/21" target="_blank" rel="noopener">官方</a>。</p>
 
             </div>
             <hr />
@@ -519,9 +589,9 @@ Autograd: 自动求导
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《PyTorch深度学习：快速入门》
+                    《PyTorch:数据加载和预处理》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/02/28/pytorch1-2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/" property="cc:attributionName"
                rel="cc:attributionURL">
                 刘金朋
             </a> 采用
@@ -562,7 +632,7 @@ Autograd: 自动求导
         repo: 'xxxnhb.github.io',
         owner: 'xxxnhb',
         admin: "xxxnhb",
-        id: '2020/02/28/pytorch1-2/',
+        id: '2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -850,24 +920,24 @@ Autograd: 自动求导
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2020/02/28/pytorch1-2/">
+                <a href="/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="PyTorch深度学习：快速入门">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="PyTorch:数据加载和预处理">
                         
-                        <span class="card-title">PyTorch深度学习：快速入门</span>
+                        <span class="card-title">PyTorch:数据加载和预处理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            帮助初学者快速掌握PyTorch的相关技巧
+                            PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。并且torchvision已经预先实现了常用图像数据集，包括CIFAR-10、ImageNet、COCO、MNIST、LSUN等数据集，可通过torchvision.datasets方便的调用。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-28
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-03
                             </span>
                         <span class="publish-author">
                             
@@ -900,24 +970,24 @@ Autograd: 自动求导
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/27/pytorch1-1/">
+                <a href="/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="pytorch简介及环境搭建">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="PyTorch:神经网络包和优化器optm">
                         
-                        <span class="card-title">pytorch简介及环境搭建</span>
+                        <span class="card-title">PyTorch:神经网络包和优化器optm</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言处理等应用程序。
+                            PyTorch通过torch.nn来构建神经网络，通过torch.optim来对参数进行更新并对网络进行优化
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-27
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-01
                             </span>
                         <span class="publish-author">
                             
@@ -1004,7 +1074,7 @@ Autograd: 自动求导
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">1.1k</span>
+            <span class="white-color">9.1k</span>
             
 
             <br>

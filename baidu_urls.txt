@@ -1,4 +1,8 @@
-https://xxxnhb.github.io/2020/02/28/pytorch1-2/
-https://xxxnhb.github.io/2020/02/27/pytorch1-1/
-https://xxxnhb.github.io/2020/02/25/article-title/
-https://xxxnhb.github.io/2020/02/25/hello-world/
+https://xxxnhb.github.io/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/
+https://xxxnhb.github.io/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/
+https://xxxnhb.github.io/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/
+https://xxxnhb.github.io/2020/02/28/4-cifar10-tutorial/
+https://xxxnhb.github.io/2020/02/28/3-neural-networks-tutorial/
+https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/
+https://xxxnhb.github.io/2020/02/28/1-tensor-tutorial/
+https://xxxnhb.github.io/2020/02/27/pytorch-jian-jie-ji-huan-jing-da-jian/

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xxxnhb.github.io/"/>
-  <updated>2020-02-29T15:47:43.362Z</updated>
+  <updated>2020-03-03T14:00:25.672Z</updated>
   <id>https://xxxnhb.github.io/</id>
   
   <author>
@@ -17,11 +17,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>PyTorch:数据加载和预处理</title>
+    <link href="https://xxxnhb.github.io/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/"/>
+    <id>https://xxxnhb.github.io/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/</id>
+    <published>2020-03-03T13:58:59.000Z</published>
+    <updated>2020-03-03T14:00:25.672Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;数据加载和预处理&quot;&gt;&lt;a href=&quot;#数据加载和预处理&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PyTorch:神经网络包和优化器optm</title>
+    <link href="https://xxxnhb.github.io/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/"/>
+    <id>https://xxxnhb.github.io/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/</id>
+    <published>2020-03-01T13:35:59.000Z</published>
+    <updated>2020-03-03T14:00:25.672Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;神经网络包和优化器optm&quot;&gt;&lt;a href=&quot;#神经网络包和优化器optm&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PyTorch深度学习：快速入门</title>
-    <link href="https://xxxnhb.github.io/2020/02/28/pytorch1-2/"/>
-    <id>https://xxxnhb.github.io/2020/02/28/pytorch1-2/</id>
-    <published>2020-02-28T00:03:22.000Z</published>
-    <updated>2020-02-29T15:47:43.362Z</updated>
+    <link href="https://xxxnhb.github.io/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/"/>
+    <id>https://xxxnhb.github.io/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/</id>
+    <published>2020-02-29T00:03:22.000Z</published>
+    <updated>2020-03-03T14:37:38.359Z</updated>
     
     <summary type="html">
     
@@ -38,14 +90,118 @@
       <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
     
     
-      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
+      <category term="PyTorch快速入门" scheme="https://xxxnhb.github.io/tags/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于CIFAR10训练一个分类器</title>
+    <link href="https://xxxnhb.github.io/2020/02/28/4-cifar10-tutorial/"/>
+    <id>https://xxxnhb.github.io/2020/02/28/4-cifar10-tutorial/</id>
+    <published>2020-02-28T14:47:19.000Z</published>
+    <updated>2020-03-03T14:41:13.528Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch快速入门" scheme="https://xxxnhb.github.io/tags/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>神经网络</title>
+    <link href="https://xxxnhb.github.io/2020/02/28/3-neural-networks-tutorial/"/>
+    <id>https://xxxnhb.github.io/2020/02/28/3-neural-networks-tutorial/</id>
+    <published>2020-02-28T10:23:32.000Z</published>
+    <updated>2020-03-03T14:41:10.573Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch快速入门" scheme="https://xxxnhb.github.io/tags/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>自动求导(Autograd)</title>
+    <link href="https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/"/>
+    <id>https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/</id>
+    <published>2020-02-28T01:30:37.000Z</published>
+    <updated>2020-03-03T14:41:08.266Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch快速入门" scheme="https://xxxnhb.github.io/tags/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>张量(Tensor)简介</title>
+    <link href="https://xxxnhb.github.io/2020/02/28/1-tensor-tutorial/"/>
+    <id>https://xxxnhb.github.io/2020/02/28/1-tensor-tutorial/</id>
+    <published>2020-02-28T00:03:22.000Z</published>
+    <updated>2020-03-03T14:41:05.925Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch快速入门" scheme="https://xxxnhb.github.io/tags/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
     
   </entry>
   
   <entry>
     <title>pytorch简介及环境搭建</title>
-    <link href="https://xxxnhb.github.io/2020/02/27/pytorch1-1/"/>
-    <id>https://xxxnhb.github.io/2020/02/27/pytorch1-1/</id>
+    <link href="https://xxxnhb.github.io/2020/02/27/pytorch-jian-jie-ji-huan-jing-da-jian/"/>
+    <id>https://xxxnhb.github.io/2020/02/27/pytorch-jian-jie-ji-huan-jing-da-jian/</id>
     <published>2020-02-27T09:08:59.000Z</published>
     <updated>2020-02-29T15:36:55.481Z</updated>
     
@@ -65,42 +221,6 @@
     
     
       <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>article title</title>
-    <link href="https://xxxnhb.github.io/2020/02/25/article-title/"/>
-    <id>https://xxxnhb.github.io/2020/02/25/article-title/</id>
-    <published>2020-02-25T11:44:33.000Z</published>
-    <updated>2020-02-25T11:44:33.332Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://xxxnhb.github.io/2020/02/25/hello-world/"/>
-    <id>https://xxxnhb.github.io/2020/02/25/hello-world/</id>
-    <published>2020-02-25T11:19:45.591Z</published>
-    <updated>2020-02-25T11:19:45.591Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
-        
-      
-    
-    </summary>
-    
     
   </entry>
   

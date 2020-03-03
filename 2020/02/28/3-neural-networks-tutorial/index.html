@@ -4,15 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="pytorch简介及环境搭建, SYSU 刘金朋">
+    <meta name="keywords" content="神经网络, SYSU 刘金朋">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
     <meta name="description" content="
 
-PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言处理等应用程序。
-1.Pytorch简介
-很多人都会拿PyTorch和Google的Tensorflow进行比较，它们是最火的两个深度学习框架了。谈到PyTor">
+%matplotlib inline
+Neural Networks使用torch.nn包来构建神经网络上一讲提到了autograd，nn包依赖autograd包来定义模型并求导。一个nn.Model包含了各个层和一个forward(i">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +19,7 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>pytorch简介及环境搭建 | 刘金朋的博客</title>
+    <title>神经网络 | 刘金朋的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -262,13 +261,13 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        pytorch简介及环境搭建
+                        神经网络
                     </div>
                 </div>
             </div>
@@ -290,8 +289,8 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/PyTorch/" target="_blank">
-                            <span class="chip bg-color">PyTorch</span>
+                        <a href="/tags/PyTorch快速入门/" target="_blank">
+                            <span class="chip bg-color">PyTorch快速入门</span>
                         </a>
                         
                     </div>
@@ -314,7 +313,7 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-27
+                    2020-02-28
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -328,14 +327,14 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    916
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
                 
@@ -346,55 +345,125 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1417442423&auto=1&height=66"></iframe></div>
+                <div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1422274143&auto=1&height=66"></iframe></div>
 
-<p>PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言处理等应用程序。</p>
-<h1 id="1-Pytorch简介"><a href="#1-Pytorch简介" class="headerlink" title="1.Pytorch简介"></a>1.Pytorch简介</h1><hr>
-<p>很多人都会拿PyTorch和Google的Tensorflow进行比较，它们是最火的两个深度学习框架了。<br>谈到PyTorch，我们应该先说<a href="http://torch.ch" target="_blank" rel="noopener">Torch</a>。Torch是一个与Numpy类似的张量（Tensor）操作库，与Numpy不同的是Torch对GPU支持的很好，Lua是Torch的上层包装。<br>PyTorch和Torch使用包含所有相同性能的C库：TH, THC, THNN, THCUNN，并且它们将继续共享这些库。<br>这样的回答就很明确了，其实PyTorch和Torch都使用的是相同的底层，只是使用了不同的上层包装语言。</p>
-<p>PyTorch是一个Python包，提供两个高级功能：</p>
-<ul>
-<li>具有强大的GPU加速的张量计算（如NumPy）</li>
-<li>包含自动求导系统的的深度神经网络</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>PyTorch是相当简洁优雅且高效快速的框架</li>
-<li>设计追求最少的封装，尽量避免重复造轮子</li>
-<li>算是所有的框架中面向对象设计的最优雅的一个，设计最符合人们的思维，它让用户尽可能地专注于实现自己的想法</li>
-<li>大佬支持,与google的Tensorflow类似，FAIR的支持足以确保PyTorch获得持续的开发更新</li>
-<li>不错的的文档（相比FB的其他项目，PyTorch的文档简直算是完善了，参考Thrift），PyTorch作者亲自维护的论坛 供用户交流和求教问题</li>
-<li>入门简单</li>
-</ul>
-<h1 id="2-Pytorch环境搭建"><a href="#2-Pytorch环境搭建" class="headerlink" title="2.Pytorch环境搭建"></a>2.Pytorch环境搭建</h1><p>PyTorch的安装十分简单，根据<a href="https://pytorch.org/" target="_blank" rel="noopener">PyTorch官网</a>，对系统选择和安装方式等灵活选择即可。<br>这里以<a href="https://www.anaconda.com/" target="_blank" rel="noopener">anaconda</a>为例，简单的说一下步骤和要点。<br>国内安装anaconda建议使用<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener">清华</a>镜像。</p>
-<h2 id="2-1安装Pytorch"><a href="#2-1安装Pytorch" class="headerlink" title="2.1安装Pytorch"></a>2.1安装Pytorch</h2><p>pytorch的安装经过了几次变化，请大家以官网的安装命令为准。另外需要说明的就是在1.2版本以后，pytorch只支持cuda 9.2以上了，所以需要对cuda进行升级，目前测试大部分显卡都可以用，包括笔记本的MX250也是可以顺利升级到cuda 10.1。</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#默认 使用 cuda10.1</span>
-pip <span class="token function">install</span> torch<span class="token operator">==</span><span class="token operator">=</span>1.4.0 torchvision<span class="token operator">==</span><span class="token operator">=</span>0.5.0 -f https://download.pytorch.org/whl/torch_stable.html
-
-<span class="token comment" spellcheck="true">#cuda 9.2</span>
-pip <span class="token function">install</span> torch<span class="token operator">==</span>1.4.0+cu92 torchvision<span class="token operator">==</span>0.5.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
-
-<span class="token comment" spellcheck="true">#cpu版本</span>
-pip <span class="token function">install</span> torch<span class="token operator">==</span>1.4.0+cpu torchvision<span class="token operator">==</span>0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>验证输入python 进入</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token operator">%</span>matplotlib inline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>Neural Networks</h1><p>使用torch.nn包来构建神经网络<br>上一讲提到了autograd，nn包依赖autograd包来定义模型并求导。<br>一个nn.Model包含了各个层和一个forward(input)方法，该方法返回output。<br>例如：<br>它是一个简单的前馈神经网络，它接受一个输入，然后一层接着一层地传递，最后输出计算的结果。<br>神经网络的典型训练过程如下：<br>1.定义包含一些可学习的参数（或者叫权重）神经网络;<br>2.在数据集上迭代；<br>3.通过神经网络处理输入；<br>4.计算损失（输出结果和正确值的差值）；<br>5.将梯度反向传播回网络的参数；<br>6.更新网络的参数，主要使用如下简单的更新规则：<br>  weight = weight - learning_rate * gradient</p>
+<h1 id="定义网络"><a href="#定义网络" class="headerlink" title="定义网络"></a>定义网络</h1><p>开始定义一个网络：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch
-torch<span class="token punctuation">.</span>__version__
-<span class="token comment" spellcheck="true"># 得到结果'1.4.0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="2-2配置Jupyter-Notebook"><a href="#2-2配置Jupyter-Notebook" class="headerlink" title="2.2配置Jupyter Notebook"></a>2.2配置Jupyter Notebook</h2><p>新建的环境是没有安装安装ipykernel的所以无法注册到Jupyter Notebook中，所以先要准备下环境</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#安装ipykernel</span>
-conda <span class="token function">install</span> ipykernel
-<span class="token comment" spellcheck="true">#写入环境</span>
-python -m ipykernel <span class="token function">install</span>  --name pytorch --display-name <span class="token string">"Pytorch for Deeplearning"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>下一步就是定制 Jupyter Notebook</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#切换回基础环境</span>
-activate base
-<span class="token comment" spellcheck="true">#创建jupyter notebook配置文件</span>
-jupyter notebook --generate-config
-<span class="token comment" spellcheck="true">## 这里会显示创建jupyter_notebook_config.py的具体位置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>打开文件，修改</p>
-<pre><code>c.NotebookApp.notebook_dir = &#39;&#39; 默认目录位置
-c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可能报错</code></pre><h2 id="2-3-测试"><a href="#2-3-测试" class="headerlink" title="2.3 测试"></a>2.3 测试</h2><p>至此 Pytorch 的开发环境安装完成，可以在开始菜单中打开Jupyter Notebook 在New 菜单中创建文件时选择<code>Pytorch for Deeplearning</code> 创建PyTorch的相关开发环境了</p>
-<h2 id="2-4-问题解决"><a href="#2-4-问题解决" class="headerlink" title="2.4 问题解决"></a>2.4 问题解决</h2><h3 id="问题1：启动python提示编码错误"><a href="#问题1：启动python提示编码错误" class="headerlink" title="问题1：启动python提示编码错误"></a>问题1：启动python提示编码错误</h3><p>删除 .python_history <a href="http://tantai.org/posts/install-keras-pytorch-jupyter-notebook-Anaconda-window-10-cpu/" target="_blank" rel="noopener">来源</a></p>
-<h3 id="问题2-默认目录设置不起效"><a href="#问题2-默认目录设置不起效" class="headerlink" title="问题2 默认目录设置不起效"></a>问题2 默认目录设置不起效</h3><p>打开快捷方式，看看快捷方式是否跟这个截图一样，如果是则删除 <code>%USERPROFILE%</code> 改参数会覆盖掉notebook_dir设置，导致配置不起效<br><img src="pic1.png" alt="Alt text"></p>
-<p>本文参考PyTorch中文手册<br>如果你还发现其他问题，请直接留言</p>
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+
+<span class="token keyword">class</span> <span class="token class-name">Net</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>Net<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#I input image channel, 6 output channels, 5 × 5 squar e convolution</span>
+        <span class="token comment" spellcheck="true">#kernel</span>
+        self<span class="token punctuation">.</span>conv1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>conv2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># an affine operation: y = Wx + b</span>
+        self<span class="token punctuation">.</span>fc1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">16</span> <span class="token operator">*</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">120</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>fc2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">120</span><span class="token punctuation">,</span> <span class="token number">84</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>fc3 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">84</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true">#Max pooling over a (2, 2)window</span>
+        x <span class="token operator">=</span> F<span class="token punctuation">.</span>max_pool2d<span class="token punctuation">(</span>F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#If the size is a square you can only specify a single number</span>
+        x <span class="token operator">=</span> F<span class="token punctuation">.</span>max_pool2d<span class="token punctuation">(</span>F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>conv2<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> x<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>num_flat_features<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>fc1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>self<span class="token punctuation">.</span>fc2<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>fc3<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> x
+
+    <span class="token keyword">def</span> <span class="token function">num_flat_features</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        size <span class="token operator">=</span> x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">#all dimensions except the batch dimension</span>
+        num_features <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> s <span class="token keyword">in</span> size<span class="token punctuation">:</span>
+            num_features <span class="token operator">*=</span> s
+        <span class="token keyword">return</span> num_features
+
+net <span class="token operator">=</span> Net<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>net<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>Net(
+  (conv1): Conv2d(1, 6, kernel_size=(5, 5), stride=(1, 1))
+  (conv2): Conv2d(6, 16, kernel_size=(5, 5), stride=(1, 1))
+  (fc1): Linear(in_features=400, out_features=120, bias=True)
+  (fc2): Linear(in_features=120, out_features=84, bias=True)
+  (fc3): Linear(in_features=84, out_features=10, bias=True)
+)</code></pre><p>在模型中必须要定义forward函数，backward函数（用来计算梯度）会被autograd自动创建。可以在forward函数中使用任何针对Tensor的操作</p>
+<p>net.parameters()返回可被学习的参数（权重）列表和值</p>
+<pre class="line-numbers language-python"><code class="language-python">params <span class="token operator">=</span> list<span class="token punctuation">(</span>net<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>params<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code>10
+torch.Size([6, 1, 5, 5])</code></pre><p>测试随机输入32*32。注：这个网络（LeNet)期望的输入大小是32×32，如果使用MNIST数据集来训练这个网络，请把图片大小重新调整到32×32.</p>
+<pre class="line-numbers language-python"><code class="language-python">input <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span>
+out <span class="token operator">=</span> net<span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code>tensor([[ 0.0270, -0.1490, -0.0597, -0.0841, -0.0060, -0.1835,  0.0107,  0.0680,
+         -0.0480, -0.0272]], grad_fn=&lt;AddmmBackward&gt;)</code></pre><p>将所有参数的梯度缓存清零，然后进行随机梯度的反向传播：</p>
+<pre class="line-numbers language-python"><code class="language-python">net<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+out<span class="token punctuation">.</span>backward<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>Note<br><code>torch.nn</code> 只支持小批量输入。整个 <code>torch.nn</code> 包都只支持小批量样本，而不支持单个样本。 例如，<code>nn.Conv2d</code> 接受一个4维的张量， <code>每一维分别是sSamples * nChannels * Height * Width（样本数*通道数*高*宽）</code>。 如果你有单个样本，只需使用 <code>input.unsqueeze(0)</code> 来添加其它的维数<br>在继续之前，我们回顾一下到目前为止用到的类。<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h2></li>
+<li>torch.Tensor:一个用过自动调用backward()实现支持自动梯度计算的多维数组，并且保存关于这个向量的梯度w.r.t.</li>
+<li>nn.Module:神经网络模块。封装参数，移动到GPU上运行、导出、加载等。</li>
+<li>nn.Parameter:一种变量，当把它赋给一个Module时，被自动地注册为一个参数</li>
+<li>autograd.Function:实现一个自动求导操作的前向和反向定义，每个变量操作至少创建一个函数节点，每一个Tensor的操作都回创一个接到创建Tensor和编码其历史的函数的Function节点。<h2 id="重点如下："><a href="#重点如下：" class="headerlink" title="重点如下："></a>重点如下：</h2></li>
+<li>定义一个网络</li>
+<li>处理输入，调用backword<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1>一个损失函数接受一对（output，target）作为输入，计算一个值来估计网络的输出和目标值相差多少。<br>nn包中有很多不同的损失函数。nn.MSELoss是一个比较简单的损失函数，它计算输出和目标间的均方误差，例如：</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">output <span class="token operator">=</span> net<span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+target <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> 
+target <span class="token operator">=</span> target<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#使target和output的shape相同</span>
+criterion <span class="token operator">=</span> nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+loss <span class="token operator">=</span> criterion<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>loss<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>tensor(1.1544, grad_fn=&lt;MseLossBackward&gt;)</code></pre><p>现在，如果在反向过程中跟随loss，使用它的.grad_fn属性，将看到如下所示的计算图。<br>::<br>input -&gt; conv2d -&gt; relu -&gt; maxpool2d -&gt; conv2d -&gt; relu -&gt; maxpool2d -&gt; view -&gt; linear -&gt; relu -&gt; linear -&gt; relu -&gt; linear -&gt; MSELoss -&gt; loss<br>所以，当我们调用loss.backward()时，整张计算图都会根据loss进行微分，而且图中所有设置为requires_grad=True的张量将会拥有一个随着梯度累积的.grad张量。</p>
+<p>为了说明，让我们后退几步：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>loss<span class="token punctuation">.</span>grad_fn<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>loss<span class="token punctuation">.</span>grad_fn<span class="token punctuation">.</span>next_functions<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>loss<span class="token punctuation">.</span>grad_fn<span class="token punctuation">.</span>next_functions<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>next_functions<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code>&lt;MseLossBackward object at 0x7f39c7490710&gt;
+&lt;AddmmBackward object at 0x7f39c7490910&gt;
+&lt;AccumulateGrad object at 0x7f3a13de12d0&gt;</code></pre><h1 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h1><p>调用loss.backward()获得反向传播的误差。</p>
+<p>但是在调用前需要清楚已存在的梯度，否则梯度将被累加到已存在的梯度。</p>
+<p>现在，我们将调用loss.backward(),并查看conv1层的偏差（bias）项在反向传播前后的梯度</p>
+<pre class="line-numbers language-python"><code class="language-python">net<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"conv1.bias.grad before backward"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>net<span class="token punctuation">.</span>conv1<span class="token punctuation">.</span>bias<span class="token punctuation">.</span>grad<span class="token punctuation">)</span>
+
+loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"conv1.bias.grad after backward"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>net<span class="token punctuation">.</span>conv1<span class="token punctuation">.</span>bias<span class="token punctuation">.</span>grad<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>conv1.bias.grad before backward
+tensor([0., 0., 0., 0., 0., 0.])
+conv1.bias.grad after backward
+tensor([0.0200, 0.0075, 0.0097, 0.0054, 0.0115, 0.0240])</code></pre><p>如何使用损失函数</p>
+<h3 id="稍后阅读："><a href="#稍后阅读：" class="headerlink" title="稍后阅读："></a>稍后阅读：</h3><p>nn包，包含了各种用来构成深度神经网络构建的模块和损失函数，完整的文档请查看<a href="https://pytorch.org/docs/nn" title="Torch.nn" target="_blank" rel="noopener">这里</a></p>
+<h1 id="更新权重"><a href="#更新权重" class="headerlink" title="更新权重"></a>更新权重</h1><p>在实践中最简单的权重更新规则是随机梯度下降（SGD):<br>weight = weight - learning_rate * gradient  </p>
+<p>我们可以使用简单的Python代码实现这个规则：</p>
+<pre><code>learning_rate = 0.01
+for f in net.parameters():
+    f.data.sub_(f.grad.data * learning_rate)</code></pre><p>但是当使用神经网络是想要使用各种不同的更新规则时，比如SGD、Nesterov-SGD、Adam、RMSPROP等，PyTorch中构建了一个包torch.optim实现了所有这些规则。使用它们非常简单：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim
+
+<span class="token comment" spellcheck="true">#create your optimizer</span>
+optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>net<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">#in your training loop:</span>
+optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#zero the gradient buffers</span>
+output <span class="token operator">=</span> net<span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+loss <span class="token operator">=</span> criterion<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>       <span class="token comment" spellcheck="true">#Does the update</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>观察如何使用“optimizer.zero_grad(“手动将梯度缓冲区设置为零。<br>这是因为梯度是按Backprop部分中的说明累积的。</p>
 
             </div>
             <hr />
@@ -553,9 +622,9 @@ c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《pytorch简介及环境搭建》
+                    《神经网络》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/02/27/pytorch1-1/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/02/28/3-neural-networks-tutorial/" property="cc:attributionName"
                rel="cc:attributionURL">
                 刘金朋
             </a> 采用
@@ -596,7 +665,7 @@ c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可�
         repo: 'xxxnhb.github.io',
         owner: 'xxxnhb',
         admin: "xxxnhb",
-        id: '2020/02/27/pytorch1-1/',
+        id: '2020/02/28/3-neural-networks-tutorial/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -883,19 +952,19 @@ c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可�
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/28/pytorch1-2/">
+                <a href="/2020/02/28/4-cifar10-tutorial/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="PyTorch深度学习：快速入门">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="基于CIFAR10训练一个分类器">
                         
-                        <span class="card-title">PyTorch深度学习：快速入门</span>
+                        <span class="card-title">基于CIFAR10训练一个分类器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            帮助初学者快速掌握PyTorch的相关技巧
+                            CIFAR10_tutorial
                         
                     </div>
                     <div class="publish-info">
@@ -917,8 +986,8 @@ c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/PyTorch/" target="_blank">
-                        <span class="chip bg-color">PyTorch</span>
+                    <a href="/tags/PyTorch快速入门/" target="_blank">
+                        <span class="chip bg-color">PyTorch快速入门</span>
                     </a>
                     
                 </div>
@@ -932,29 +1001,44 @@ c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/25/article-title/">
+                <a href="/2020/02/28/2-autograd-tutorial/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="article title">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="自动求导(Autograd)">
                         
-                        <span class="card-title">article title</span>
+                        <span class="card-title">自动求导(Autograd)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Autograd_tutorial
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-25
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-28
                             </span>
                         <span class="publish-author">
                             
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/PyTorch/" class="post-category" target="_blank">
+                                    PyTorch
+                                </a>
+                            
+                            
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PyTorch快速入门/" target="_blank">
+                        <span class="chip bg-color">PyTorch快速入门</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1021,7 +1105,7 @@ c.NotebookApp.iopub_data_rate_limit = 100000000 这个改大一些否则有可�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">1.1k</span>
+            <span class="white-color">9.1k</span>
             
 
             <br>

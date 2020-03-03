@@ -2,14 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xxxnhb.github.io/2020/02/28/pytorch1-2/</loc>
+    <loc>https://xxxnhb.github.io/2020/02/28/4-cifar10-tutorial/</loc>
     
-    <lastmod>2020-02-29T15:47:43.362Z</lastmod>
+    <lastmod>2020-03-03T14:41:13.528Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://xxxnhb.github.io/2020/02/27/pytorch1-1/</loc>
+    <loc>https://xxxnhb.github.io/2020/02/28/3-neural-networks-tutorial/</loc>
+    
+    <lastmod>2020-03-03T14:41:10.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/</loc>
+    
+    <lastmod>2020-03-03T14:41:08.266Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xxxnhb.github.io/2020/02/28/1-tensor-tutorial/</loc>
+    
+    <lastmod>2020-03-03T14:41:05.925Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xxxnhb.github.io/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/</loc>
+    
+    <lastmod>2020-03-03T14:37:38.359Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xxxnhb.github.io/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/</loc>
+    
+    <lastmod>2020-03-03T14:00:25.672Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xxxnhb.github.io/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/</loc>
+    
+    <lastmod>2020-03-03T14:00:25.672Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xxxnhb.github.io/2020/02/27/pytorch-jian-jie-ji-huan-jing-da-jian/</loc>
     
     <lastmod>2020-02-29T15:36:55.481Z</lastmod>
     
@@ -61,20 +103,6 @@
     <loc>https://xxxnhb.github.io/friends/index.html</loc>
     
     <lastmod>2020-02-25T14:36:03.124Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xxxnhb.github.io/2020/02/25/article-title/</loc>
-    
-    <lastmod>2020-02-25T11:44:33.332Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xxxnhb.github.io/2020/02/25/hello-world/</loc>
-    
-    <lastmod>2020-02-25T11:19:45.591Z</lastmod>
     
   </url>
   
