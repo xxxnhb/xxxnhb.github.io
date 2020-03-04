@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xxxnhb.github.io/2020/03/04/pytorch-juan-ji-shen-jing-wang-luo-jian-jie/</loc>
+    
+    <lastmod>2020-03-04T07:55:46.675Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/</loc>
+    
+    <lastmod>2020-03-03T14:48:01.969Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xxxnhb.github.io/2020/02/28/4-cifar10-tutorial/</loc>
     
-    <lastmod>2020-03-03T14:41:13.528Z</lastmod>
+    <lastmod>2020-03-03T14:47:57.696Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>https://xxxnhb.github.io/2020/02/28/3-neural-networks-tutorial/</loc>
     
     <lastmod>2020-03-03T14:41:10.573Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/</loc>
-    
-    <lastmod>2020-03-03T14:41:08.266Z</lastmod>
     
   </url>
   

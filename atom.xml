@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xxxnhb.github.io/"/>
-  <updated>2020-03-03T14:00:25.672Z</updated>
+  <updated>2020-03-04T07:55:46.675Z</updated>
   <id>https://xxxnhb.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PyTorch：卷积神经网络</title>
+    <link href="https://xxxnhb.github.io/2020/03/04/pytorch-juan-ji-shen-jing-wang-luo-jian-jie/"/>
+    <id>https://xxxnhb.github.io/2020/03/04/pytorch-juan-ji-shen-jing-wang-luo-jian-jie/</id>
+    <published>2020-03-04T07:37:23.000Z</published>
+    <updated>2020-03-04T07:55:46.675Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
+    
+  </entry>
   
   <entry>
     <title>PyTorch:数据加载和预处理</title>
@@ -99,7 +125,7 @@
     <link href="https://xxxnhb.github.io/2020/02/28/4-cifar10-tutorial/"/>
     <id>https://xxxnhb.github.io/2020/02/28/4-cifar10-tutorial/</id>
     <published>2020-02-28T14:47:19.000Z</published>
-    <updated>2020-03-03T14:41:13.528Z</updated>
+    <updated>2020-03-03T14:47:57.696Z</updated>
     
     <summary type="html">
     
@@ -151,7 +177,7 @@
     <link href="https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/"/>
     <id>https://xxxnhb.github.io/2020/02/28/2-autograd-tutorial/</id>
     <published>2020-02-28T01:30:37.000Z</published>
-    <updated>2020-03-03T14:41:08.266Z</updated>
+    <updated>2020-03-03T14:48:01.969Z</updated>
     
     <summary type="html">
     
