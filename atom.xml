@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xxxnhb.github.io/"/>
-  <updated>2020-03-19T04:18:03.654Z</updated>
+  <updated>2020-05-14T12:35:01.235Z</updated>
   <id>https://xxxnhb.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>PyTorch：logistic回归实战</title>
+    <link href="https://xxxnhb.github.io/2020/03/19/pytorch-logistic-hui-gui-shi-zhan/"/>
+    <id>https://xxxnhb.github.io/2020/03/19/pytorch-logistic-hui-gui-shi-zhan/</id>
+    <published>2020-03-19T04:10:41.000Z</published>
+    <updated>2020-05-14T12:35:01.235Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; torch
+&lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PyTorch：循环神经网络</title>
     <link href="https://xxxnhb.github.io/2020/03/19/pytorch-xun-huan-shen-jing-wang-luo/"/>
     <id>https://xxxnhb.github.io/2020/03/19/pytorch-xun-huan-shen-jing-wang-luo/</id>
     <published>2020-03-19T04:10:41.000Z</published>
-    <updated>2020-03-19T04:18:03.654Z</updated>
+    <updated>2020-05-14T12:32:22.603Z</updated>
     
     <summary type="html">
     

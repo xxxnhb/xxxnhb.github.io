@@ -1,3 +1,4 @@
+https://xxxnhb.github.io/2020/03/19/pytorch-logistic-hui-gui-shi-zhan/
 https://xxxnhb.github.io/2020/03/19/pytorch-xun-huan-shen-jing-wang-luo/
 https://xxxnhb.github.io/2020/03/04/pytorch-juan-ji-shen-jing-wang-luo-jian-jie/
 https://xxxnhb.github.io/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/

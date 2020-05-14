@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://xxxnhb.github.io/2020/03/19/pytorch-logistic-hui-gui-shi-zhan/</loc>
+    <lastmod>2020-05-14</lastmod>
+  </url>  <url>
     <loc>https://xxxnhb.github.io/2020/03/19/pytorch-xun-huan-shen-jing-wang-luo/</loc>
-    <lastmod>2020-03-19</lastmod>
+    <lastmod>2020-05-14</lastmod>
   </url>  <url>
     <loc>https://xxxnhb.github.io/2020/03/04/pytorch-juan-ji-shen-jing-wang-luo-jian-jie/</loc>
     <lastmod>2020-03-04</lastmod>
@@ -22,10 +25,10 @@
     <loc>https://xxxnhb.github.io/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/</loc>
     <lastmod>2020-03-03</lastmod>
   </url>  <url>
-    <loc>https://xxxnhb.github.io/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/</loc>
+    <loc>https://xxxnhb.github.io/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/</loc>
     <lastmod>2020-03-03</lastmod>
   </url>  <url>
-    <loc>https://xxxnhb.github.io/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/</loc>
+    <loc>https://xxxnhb.github.io/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/</loc>
     <lastmod>2020-03-03</lastmod>
   </url>  <url>
     <loc>https://xxxnhb.github.io/2020/02/27/pytorch-jian-jie-ji-huan-jing-da-jian/</loc>
