@@ -4,13 +4,15 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="PyTorch:神经网络包和优化器optm, SYSU 刘金朋">
+    <meta name="keywords" content="PyTorch:MINIST数据集手写数字识别, SYSU 刘金朋">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="神经网络包和优化器optmtorch.nn是专门为神经网络设计的模块化接口。nn构建于Autograd之上，可以来定义和运行神经网络。这里我们主要介绍几个一些常用的类
-约定：torch.nn我们为了方便使用，我们会把它设置为别名nn。
-# ">
+    <meta name="description" content="import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torchvision import d">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>PyTorch:神经网络包和优化器optm | 刘金朋的博客</title>
+    <title>PyTorch:MINIST数据集手写数字识别 | 刘金朋的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +262,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        PyTorch:神经网络包和优化器optm
+                        PyTorch:MINIST数据集手写数字识别
                     </div>
                 </div>
             </div>
@@ -326,14 +328,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    10 分
                 </div>
                 
                 
@@ -344,143 +346,221 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="神经网络包和优化器optm"><a href="#神经网络包和优化器optm" class="headerlink" title="神经网络包和优化器optm"></a>神经网络包和优化器optm</h1><p>torch.nn是专门为神经网络设计的模块化接口。nn构建于Autograd之上，可以来定义和运行神经网络。这里我们主要介绍几个一些常用的类</p>
-<p>约定：torch.nn我们为了方便使用，我们会把它设置为别名nn。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 首先要引入相关的包</span>
-<span class="token keyword">import</span> torch
-<span class="token comment" spellcheck="true"># 引入torch.nn并指定别名</span>
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch
 <span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
-<span class="token comment" spellcheck="true"># 打印一下版本</span>
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim
+<span class="token keyword">from</span> torchvision <span class="token keyword">import</span> datasets<span class="token punctuation">,</span>transforms
 torch<span class="token punctuation">.</span>__version__<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>&#39;1.3.0&#39;</code></pre><p>除了nn别名以外，我们还引用了nn.functional,这个包中包含了神经网络中使用的一些常用函数，这些函数的特点是，不具有可学习的参数（ReLU,pool,DropOut等）,这些函数可以放在构造函数中，也可以不放，但是这里建议不放。<br>一般情况下我们会将nn.functional设置为F,方便调用。</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="定义一个网络"><a href="#定义一个网络" class="headerlink" title="定义一个网络"></a>定义一个网络</h1><p>PyTorch中已经为我们准备好了现成的网络模型，只要继承nn.Model，并实现它的forward方法，PyTorch会根据autograd，自动实现backward函数，在forward函数中可以使用任何支持tensor的函数，还可以使用if、for循环、print、log等Python语法，写法和标准的Python语法一致。、</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Net</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+<pre><code>&#39;1.3.0&#39;</code></pre><h1 id="MINIST数据集手写数字识别"><a href="#MINIST数据集手写数字识别" class="headerlink" title="MINIST数据集手写数字识别"></a>MINIST数据集手写数字识别</h1><h2 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h2><p>MINIST包括6万张28×28的训练样本，1万张测试样本。</p>
+<p>前面在介绍卷积神经网络的时候说到过LeNet-5，LeNet-5之所以强大就是因为在当时的环境下将MNIST数据的识别率提高到了99%，这里我们也自己从头搭建一个卷积神经网络，也达到99%的准确率</p>
+<h2 id="手写数字识别"><a href="#手写数字识别" class="headerlink" title="手写数字识别"></a>手写数字识别</h2><p>首先，我们定义一些超参数</p>
+<pre class="line-numbers language-python"><code class="language-python">BATCH_SIZE <span class="token operator">=</span> <span class="token number">512</span> <span class="token comment" spellcheck="true">#大概需要2G的显存</span>
+EPOCHS <span class="token operator">=</span> <span class="token number">20</span> <span class="token comment" spellcheck="true"># 总共训练批次</span>
+DEVICE <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 让torch判断是否使用GPU，建议使用GPU环境，因为会快很多</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>因为Pytorch里面包含了MNIST的数据集，所以我们这里直接使用即可。 如果第一次执行会生成data文件夹，并且需要一些时间下载，如果以前下载过就不会再次下载了</p>
+<p>由于官方已经实现了dataset，所以这里可以直接使用DataLoader来对数据进行读取</p>
+<pre class="line-numbers language-python"><code class="language-python">train_loader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>
+        datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                      transform<span class="token operator">=</span>transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+                          transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                          transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.1307</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0.3081</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                      <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        batch_size<span class="token operator">=</span>BATCH_SIZE<span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">test_loader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>
+        datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span>train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>transform<span class="token operator">=</span>transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+            transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.1307</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                <span class="token punctuation">(</span><span class="token number">0.3081</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        batch_size<span class="token operator">=</span>BATCH_SIZE<span class="token punctuation">,</span>shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>下面我们定义一个网络，网络包含两个卷积层，conv1和conv2，然后紧接着两个线性层作为输出，最后输出10个维度，这10个维度我们作为0-9的标识来确定识别出的是那个数字</p>
+<p>在这里建议大家将每一层的输入和输出维度都作为注释标注出来，这样后面阅读代码的会方便很多</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">ConvNet</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># nn.Model子类的函数必须在构造函数中执行父类的构造函数</span>
-        super<span class="token punctuation">(</span>Net<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># batch*1*28*28(每次会送入batch个样本，输入通道1（黑白图像)，图像分辨率是28*28）</span>
+        <span class="token comment" spellcheck="true">#下面的卷积层Conv2d的第一个参数指输入通道数，第二个参数指输出通道数，第三个参数指卷积核的大小</span>
+        self<span class="token punctuation">.</span>conv1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 输入通道数1，输出通道数10，核的大小5</span>
+        self<span class="token punctuation">.</span>conv2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 输入通道数10，输出通道数20，核的大小3</span>
+        <span class="token comment" spellcheck="true"># 下面的全连接层Linear的第一个参数指输入通道数，第二个参数指输出通道数</span>
+        self<span class="token punctuation">.</span>fc1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">20</span><span class="token operator">*</span><span class="token number">10</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 输入通道数是2000，输出通道数是500</span>
+        self<span class="token punctuation">.</span>fc2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 输入通道数是500，输出通道数是10，即10分类</span>
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        in_size <span class="token operator">=</span> x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 在本例中in_size=512，也就是BATCH_SIZE的值。输入的x可以看成是512*1*28*28的张量。</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*1*28*28 -> batch*10*24*24（28x28的图像经过一次核为5x5的卷积，输出变为24x24）</span>
+        out <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>out<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*10*24*24（激活函数ReLU不改变形状））</span>
+        out <span class="token operator">=</span> F<span class="token punctuation">.</span>max_pool2d<span class="token punctuation">(</span>out<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*10*24*24 -> batch*10*12*12（2*2的池化层会减半）</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>conv2<span class="token punctuation">(</span>out<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*10*12*12 -> batch*20*10*10（再卷积一次，核的大小是3）</span>
+        out <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>out<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*20*10*10</span>
+        out <span class="token operator">=</span> out<span class="token punctuation">.</span>view<span class="token punctuation">(</span>in_size<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*20*10*10 -> batch*2000（out的第二维是-1，说明是自动推算，本例中第二维是20*10*10）</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>fc1<span class="token punctuation">(</span>out<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*2000 -> batch*500</span>
+        out <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>out<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*500</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>fc2<span class="token punctuation">(</span>out<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># batch*500 -> batch*10</span>
+        out <span class="token operator">=</span> F<span class="token punctuation">.</span>log_softmax<span class="token punctuation">(</span>out<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 计算log(softmax(x))</span>
+        <span class="token keyword">return</span> out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我们实例化一个网络，实例化后使用.to方法将网络移动到GPU</p>
+<p>优化器我们也直接选择简单暴力的Adam</p>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> ConvNet<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>DEVICE<span class="token punctuation">)</span>
+optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>Adam<span class="token punctuation">(</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>下面定义一下训练的函数，我们将训练的所有操作都封装到这个函数中</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">train</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> device<span class="token punctuation">,</span> train_loader<span class="token punctuation">,</span> optimizer<span class="token punctuation">,</span> epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> batch_idx<span class="token punctuation">,</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>train_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        data<span class="token punctuation">,</span> target <span class="token operator">=</span> data<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        output <span class="token operator">=</span> model<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        loss <span class="token operator">=</span> F<span class="token punctuation">.</span>nll_loss<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+        loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>batch_idx<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">30</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss:{:.6f}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>
+            epoch<span class="token punctuation">,</span> batch_idx <span class="token operator">*</span> len<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>train_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">.</span> <span class="token operator">*</span> batch_idx <span class="token operator">/</span> len<span class="token punctuation">(</span>train_loader<span class="token punctuation">)</span><span class="token punctuation">,</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>测试的操作也一样封装成一个函数</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> device<span class="token punctuation">,</span> test_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model<span class="token punctuation">.</span>eval<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    test_loss <span class="token operator">=</span> <span class="token number">0</span>
+    correct <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> data<span class="token punctuation">,</span> target <span class="token keyword">in</span> test_loader<span class="token punctuation">:</span>
+            data<span class="token punctuation">,</span> target <span class="token operator">=</span> data<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+            output <span class="token operator">=</span> model<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            test_loss <span class="token operator">+=</span> F<span class="token punctuation">.</span>nll_loss<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token string">'sum'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            pred <span class="token operator">=</span> output<span class="token punctuation">.</span>max<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> keepdim<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true"># 找到概率最大的下标</span>
+            correct <span class="token operator">+=</span> pred<span class="token punctuation">.</span>eq<span class="token punctuation">(</span>target<span class="token punctuation">.</span>view_as<span class="token punctuation">(</span>pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-        <span class="token comment" spellcheck="true"># 卷积层‘1’表示输入图片为单通道， ‘6’表示输出通道数， ‘3’表示卷积核为3*3</span>
-        self<span class="token punctuation">.</span>conv1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 线性层，输入1350个特征，输出10个特征</span>
-        self<span class="token punctuation">.</span>fc1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">1350</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">#这里的1350根据后面forwar函数计算</span>
+    test_loss <span class="token operator">/=</span> len<span class="token punctuation">(</span>test_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>
+        test_loss<span class="token punctuation">,</span> correct<span class="token punctuation">,</span> len<span class="token punctuation">(</span>test_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token number">100</span><span class="token punctuation">.</span> <span class="token operator">*</span> correct <span class="token operator">/</span> len<span class="token punctuation">(</span>test_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>下面开始训练，这里就体现出封装起来的好处了，只要写两行就可以了。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> EPOCHS <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    train<span class="token punctuation">(</span>model<span class="token punctuation">,</span> DEVICE<span class="token punctuation">,</span> train_loader<span class="token punctuation">,</span> optimizer<span class="token punctuation">,</span> epoch<span class="token punctuation">)</span>
+    test<span class="token punctuation">(</span>model<span class="token punctuation">,</span> DEVICE<span class="token punctuation">,</span> test_loader<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code>Train Epoch: 1 [14848/60000 (25%)]    Loss:0.094219
+Train Epoch: 1 [30208/60000 (50%)]    Loss:0.073722
+Train Epoch: 1 [45568/60000 (75%)]    Loss:0.066013
 
-    <span class="token comment" spellcheck="true">#正向传播</span>
-    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 结果：【1， 1， 32， 32】</span>
-        <span class="token comment" spellcheck="true">#卷积 -> 激活 -> 池化</span>
-        x <span class="token operator">=</span> self<span class="token punctuation">.</span>conv1<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 根据卷积的尺寸计算公式，计算结果是30</span>
-        x <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#结果：【1，6，30，30】</span>
-        x <span class="token operator">=</span> F<span class="token punctuation">.</span>max_pool2d<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 我们使用池化层，计算结果是15</span>
-        x <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>           <span class="token comment" spellcheck="true"># 结果：[1, 6, 15, 15]      </span>
-        <span class="token comment" spellcheck="true"># reshape, '-1'表示自适应</span>
-        <span class="token comment" spellcheck="true">#这里做的就是压扁操作，就是把后面的【1，6， 15， 15】压扁，变为【1，1350】</span>
-        x <span class="token operator">=</span> x<span class="token punctuation">.</span>view<span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#这里就是fc1层的输入1350</span>
-        x <span class="token operator">=</span> self<span class="token punctuation">.</span>fc1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> x
+Test set: Average loss: 0.0617, Accuracy: 9808/10000 (98%)
 
-net <span class="token operator">=</span> Net<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>net<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>Net(
-  (conv1): Conv2d(1, 6, kernel_size=(3, 3), stride=(1, 1))
-  (fc1): Linear(in_features=1350, out_features=10, bias=True)
-)</code></pre><p>网络的可学习参数通过net.parameters()返回</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> parameters <span class="token keyword">in</span> net<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>parameters<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre><code>Parameter containing:
-tensor([[[[-0.2722,  0.2127,  0.1440],
-          [ 0.1893,  0.2289, -0.1173],
-          [ 0.1928,  0.0049, -0.0850]]],
+Train Epoch: 2 [14848/60000 (25%)]    Loss:0.086606
+Train Epoch: 2 [30208/60000 (50%)]    Loss:0.101871
+Train Epoch: 2 [45568/60000 (75%)]    Loss:0.048205
 
+Test set: Average loss: 0.0450, Accuracy: 9849/10000 (98%)
 
-        [[[ 0.1248, -0.2400, -0.0258],
-          [ 0.0049,  0.0040, -0.2947],
-          [-0.2115,  0.1071,  0.2063]]],
+Train Epoch: 3 [14848/60000 (25%)]    Loss:0.019774
+Train Epoch: 3 [30208/60000 (50%)]    Loss:0.033375
+Train Epoch: 3 [45568/60000 (75%)]    Loss:0.023632
 
+Test set: Average loss: 0.0358, Accuracy: 9883/10000 (99%)
 
-        [[[ 0.0656, -0.1588,  0.3105],
-          [-0.2901, -0.1213,  0.1705],
-          [-0.1190,  0.2064,  0.3216]]],
+Train Epoch: 4 [14848/60000 (25%)]    Loss:0.022028
+Train Epoch: 4 [30208/60000 (50%)]    Loss:0.025542
+Train Epoch: 4 [45568/60000 (75%)]    Loss:0.037841
 
+Test set: Average loss: 0.0355, Accuracy: 9874/10000 (99%)
 
-        [[[ 0.1882,  0.3190,  0.3296],
-          [-0.3016, -0.2781,  0.1870],
-          [-0.2218, -0.1386, -0.0738]]],
+Train Epoch: 5 [14848/60000 (25%)]    Loss:0.027415
+Train Epoch: 5 [30208/60000 (50%)]    Loss:0.011888
+Train Epoch: 5 [45568/60000 (75%)]    Loss:0.018164
 
+Test set: Average loss: 0.0391, Accuracy: 9869/10000 (99%)
 
-        [[[-0.0169,  0.2492,  0.0894],
-          [-0.2057, -0.2185,  0.0337],
-          [-0.2511,  0.1548,  0.0939]]],
+Train Epoch: 6 [14848/60000 (25%)]    Loss:0.026594
+Train Epoch: 6 [30208/60000 (50%)]    Loss:0.041575
+Train Epoch: 6 [45568/60000 (75%)]    Loss:0.013372
 
+Test set: Average loss: 0.0293, Accuracy: 9892/10000 (99%)
 
-        [[[-0.0301, -0.2842,  0.3223],
-          [-0.0803,  0.0106, -0.0678],
-          [ 0.0725,  0.0646,  0.2251]]]], requires_grad=True)
-Parameter containing:
-tensor([-0.0749, -0.1380, -0.0128, -0.0752,  0.0611, -0.1311],
-       requires_grad=True)
-Parameter containing:
-tensor([[ 0.0081,  0.0077,  0.0227,  ..., -0.0003, -0.0174, -0.0037],
-        [-0.0006, -0.0046,  0.0208,  ...,  0.0218,  0.0025, -0.0128],
-        [-0.0166, -0.0182, -0.0263,  ...,  0.0062,  0.0203, -0.0041],
-        ...,
-        [ 0.0228,  0.0088,  0.0267,  ...,  0.0070, -0.0241,  0.0038],
-        [ 0.0180, -0.0091, -0.0142,  ...,  0.0152,  0.0247, -0.0197],
-        [ 0.0235, -0.0028, -0.0111,  ...,  0.0014,  0.0076,  0.0157]],
-       requires_grad=True)
-Parameter containing:
-tensor([-0.0089, -0.0139, -0.0196,  0.0216, -0.0125,  0.0169,  0.0131, -0.0029,
-        -0.0032,  0.0180], requires_grad=True)</code></pre><p>net.named_parameters可同时返回可学习的参数及名称</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> name<span class="token punctuation">,</span>parameters <span class="token keyword">in</span> net<span class="token punctuation">.</span>named_parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span><span class="token string">':'</span><span class="token punctuation">,</span>parameters<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre><code>conv1.weight : torch.Size([6, 1, 3, 3])
-conv1.bias : torch.Size([6])
-fc1.weight : torch.Size([10, 1350])
-fc1.bias : torch.Size([10])</code></pre><p>forward函数的输入输出都是Tensor</p>
-<pre class="line-numbers language-python"><code class="language-python">input <span class="token operator">=</span> torch<span class="token punctuation">.</span>randn<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 这里对应前面forward的输入是32</span>
-out <span class="token operator">=</span> net<span class="token punctuation">(</span>input<span class="token punctuation">)</span>
-out<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<pre><code>torch.Size([1, 1, 32, 32])
-torch.Size([1, 6, 30, 30])
-torch.Size([1, 6, 15, 15])
-torch.Size([1, 1350])
+Train Epoch: 7 [14848/60000 (25%)]    Loss:0.014221
+Train Epoch: 7 [30208/60000 (50%)]    Loss:0.014949
+Train Epoch: 7 [45568/60000 (75%)]    Loss:0.016649
 
+Test set: Average loss: 0.0367, Accuracy: 9867/10000 (99%)
 
+Train Epoch: 8 [14848/60000 (25%)]    Loss:0.008177
+Train Epoch: 8 [30208/60000 (50%)]    Loss:0.005532
+Train Epoch: 8 [45568/60000 (75%)]    Loss:0.025882
 
+Test set: Average loss: 0.0346, Accuracy: 9881/10000 (99%)
 
+Train Epoch: 9 [14848/60000 (25%)]    Loss:0.005148
+Train Epoch: 9 [30208/60000 (50%)]    Loss:0.003566
+Train Epoch: 9 [45568/60000 (75%)]    Loss:0.003365
 
-torch.Size([1, 10])</code></pre><pre class="line-numbers language-python"><code class="language-python">input<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre><code>torch.Size([1, 1, 32, 32])</code></pre><p>在反向传播前，先要将所有参数的梯度清零</p>
-<pre class="line-numbers language-python"><code class="language-python">net<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
-out<span class="token punctuation">.</span>backward<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#反向传播的实现是PyTorch自动实现的，我们只要调用这个函数即可</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>torch.nn只支持mini-batches，不支持一次只输入一个样本，即一次必须是一个batch。<br>也就是说，就算我们输入一个样本，也会对样本进行分批，所以，所有的输入都会增加一个维度，我们对比下刚才的input，nn中定义为3维，但是我们人工创建时多增加了一个维度，变成了4维，最前面的1即为batch-size</p>
-<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><p>在nn中PyTorch还预制了常用的损失函数，下面我们用MSELoss来计算均方误差</p>
-<pre class="line-numbers language-python"><code class="language-python">y <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">.</span>float<span class="token punctuation">(</span><span class="token punctuation">)</span>
-criterion <span class="token operator">=</span> nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
-loss <span class="token operator">=</span> criterion<span class="token punctuation">(</span>out<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># loss是一个scalar，我们可以直接用item获取到他的python类型的数值</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>29.34039306640625</code></pre><h1 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h1><p>在反向传播计算完成所有参数的梯度后，还需要使用优化方法来更新网络的权重和参数，例如随机梯度下降法（SGD）的更新策略如下：<br>weight = weight-learning_rate*gradient<br>在torch.optim中实现大多数的优化方法，例如RMSProp、Adam、SGD等，下面我们使用SGD做个简单的样例</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>optim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-python"><code class="language-python">out <span class="token operator">=</span> net<span class="token punctuation">(</span>input<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 这里调用的时候会打印出我们在forward函数中打印x的大小</span>
-criterion <span class="token operator">=</span> nn<span class="token punctuation">.</span>MSELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
-loss <span class="token operator">=</span> criterion<span class="token punctuation">(</span>out<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#新建一个优化器，SGD只需要调整的参数和学习率</span>
-optimizer <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>net<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#先梯度清零（与net.zero_grad()效果一样）</span>
-optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
-loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+Test set: Average loss: 0.0287, Accuracy: 9905/10000 (99%)
 
-<span class="token comment" spellcheck="true">#更新参数</span>
-optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>torch.Size([1, 1, 32, 32])
-torch.Size([1, 6, 30, 30])
-torch.Size([1, 6, 15, 15])
-torch.Size([1, 1350])</code></pre><p>这样，神经网络的数据的一个完整的传播就已经通过PyTorch实现了。</p>
+Train Epoch: 10 [14848/60000 (25%)]    Loss:0.003661
+Train Epoch: 10 [30208/60000 (50%)]    Loss:0.013061
+Train Epoch: 10 [45568/60000 (75%)]    Loss:0.007957
+
+Test set: Average loss: 0.0342, Accuracy: 9896/10000 (99%)
+
+Train Epoch: 11 [14848/60000 (25%)]    Loss:0.005907
+Train Epoch: 11 [30208/60000 (50%)]    Loss:0.005411
+Train Epoch: 11 [45568/60000 (75%)]    Loss:0.005319
+
+Test set: Average loss: 0.0356, Accuracy: 9903/10000 (99%)
+
+Train Epoch: 12 [14848/60000 (25%)]    Loss:0.008944
+Train Epoch: 12 [30208/60000 (50%)]    Loss:0.003442
+Train Epoch: 12 [45568/60000 (75%)]    Loss:0.007346
+
+Test set: Average loss: 0.0361, Accuracy: 9887/10000 (99%)
+
+Train Epoch: 13 [14848/60000 (25%)]    Loss:0.007296
+Train Epoch: 13 [30208/60000 (50%)]    Loss:0.003293
+Train Epoch: 13 [45568/60000 (75%)]    Loss:0.008293
+
+Test set: Average loss: 0.0289, Accuracy: 9911/10000 (99%)
+
+Train Epoch: 14 [14848/60000 (25%)]    Loss:0.004190
+Train Epoch: 14 [30208/60000 (50%)]    Loss:0.003393
+Train Epoch: 14 [45568/60000 (75%)]    Loss:0.000739
+
+Test set: Average loss: 0.0314, Accuracy: 9916/10000 (99%)
+
+Train Epoch: 15 [14848/60000 (25%)]    Loss:0.001715
+Train Epoch: 15 [30208/60000 (50%)]    Loss:0.003200
+Train Epoch: 15 [45568/60000 (75%)]    Loss:0.003006
+
+Test set: Average loss: 0.0340, Accuracy: 9901/10000 (99%)
+
+Train Epoch: 16 [14848/60000 (25%)]    Loss:0.001154
+Train Epoch: 16 [30208/60000 (50%)]    Loss:0.005416
+Train Epoch: 16 [45568/60000 (75%)]    Loss:0.000859
+
+Test set: Average loss: 0.0374, Accuracy: 9910/10000 (99%)
+
+Train Epoch: 17 [14848/60000 (25%)]    Loss:0.000601
+Train Epoch: 17 [30208/60000 (50%)]    Loss:0.007012
+Train Epoch: 17 [45568/60000 (75%)]    Loss:0.003185
+
+Test set: Average loss: 0.0367, Accuracy: 9897/10000 (99%)
+
+Train Epoch: 18 [14848/60000 (25%)]    Loss:0.000702
+Train Epoch: 18 [30208/60000 (50%)]    Loss:0.001315
+Train Epoch: 18 [45568/60000 (75%)]    Loss:0.001996
+
+Test set: Average loss: 0.0326, Accuracy: 9916/10000 (99%)
+
+Train Epoch: 19 [14848/60000 (25%)]    Loss:0.001052
+Train Epoch: 19 [30208/60000 (50%)]    Loss:0.002266
+Train Epoch: 19 [45568/60000 (75%)]    Loss:0.000495
+
+Test set: Average loss: 0.0461, Accuracy: 9882/10000 (99%)
+
+Train Epoch: 20 [14848/60000 (25%)]    Loss:0.008733
+Train Epoch: 20 [30208/60000 (50%)]    Loss:0.002210
+Train Epoch: 20 [45568/60000 (75%)]    Loss:0.000465
+
+Test set: Average loss: 0.0378, Accuracy: 9900/10000 (99%)</code></pre><p>我们看一下结果，准确率99%，没问题</p>
+<p>如果你的模型连MNIST都搞不定，那么你的模型没有任何的价值</p>
+<p>即使你的模型搞定了MNIST，你的模型也可能没有任何的价值</p>
+<p>MNIST是一个很简单的数据集，由于它的局限性只能作为研究用途，对实际应用带来的价值非常有限。但是通过这个例子，我们可以完全了解一个实际项目的工作流程</p>
+<p>我们找到数据集，对数据做预处理，定义我们的模型，调整超参数，测试训练，再通过训练结果对超参数进行调整或者对模型进行调整。</p>
+<p>并且通过这个实战我们已经有了一个很好的模板，以后的项目都可以以这个模板为样例</p>
 
             </div>
             <hr />
@@ -639,9 +719,9 @@ torch.Size([1, 1350])</code></pre><p>这样，神经网络的数据的一个完�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《PyTorch:神经网络包和优化器optm》
+                    《PyTorch:MINIST数据集手写数字识别》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/01/pytorch-mnist-shou-xie-shu-zi-shi-bie/" property="cc:attributionName"
                rel="cc:attributionURL">
                 刘金朋
             </a> 采用
@@ -682,7 +762,7 @@ torch.Size([1, 1350])</code></pre><p>这样，神经网络的数据的一个完�
         repo: 'xxxnhb.github.io',
         owner: 'xxxnhb',
         admin: "xxxnhb",
-        id: '2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/',
+        id: '2020/03/01/pytorch-mnist-shou-xie-shu-zi-shi-bie/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -969,24 +1049,24 @@ torch.Size([1, 1350])</code></pre><p>这样，神经网络的数据的一个完�
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/03/pytorch-shu-ju-de-jia-zai-he-yu-chu-li/">
+                <a href="/2020/03/01/pytorch-shen-jing-wang-luo-bao-he-you-hua-qi-optm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="PyTorch:数据加载和预处理">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="PyTorch:神经网络包和优化器optm">
                         
-                        <span class="card-title">PyTorch:数据加载和预处理</span>
+                        <span class="card-title">PyTorch:神经网络包和优化器optm</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            PyTorch通过torch.utils.data对一般常用的数据加载进行了封装，可以很容易地实现多线程数据预读和批量加载。并且torchvision已经预先实现了常用图像数据集，包括CIFAR-10、ImageNet、COCO、MNIST、LSUN等数据集，可通过torchvision.datasets方便的调用。
+                            PyTorch通过torch.nn来构建神经网络，通过torch.optim来对参数进行更新并对网络进行优化
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-03
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-01
                         </span>
                         <span class="publish-author">
                             
@@ -1018,24 +1098,24 @@ torch.Size([1, 1350])</code></pre><p>这样，神经网络的数据的一个完�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/01/pytorch-mnist-shou-xie-shu-zi-shi-bie/">
+                <a href="/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="PyTorch:MINIST数据集手写数字识别">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="PyTorch深度学习：快速入门">
                         
-                        <span class="card-title">PyTorch:MINIST数据集手写数字识别</span>
+                        <span class="card-title">PyTorch深度学习：快速入门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这里我们从头搭建一个卷积神经网络，达到99%的准确率
+                            帮助初学者快速掌握PyTorch的相关技巧
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-01
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-29
                             </span>
                         <span class="publish-author">
                             
@@ -1052,8 +1132,8 @@ torch.Size([1, 1350])</code></pre><p>这样，神经网络的数据的一个完�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/PyTorch/" target="_blank">
-                        <span class="chip bg-color">PyTorch</span>
+                    <a href="/tags/PyTorch快速入门/" target="_blank">
+                        <span class="chip bg-color">PyTorch快速入门</span>
                     </a>
                     
                 </div>

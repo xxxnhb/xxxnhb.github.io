@@ -148,6 +148,33 @@
   </entry>
   
   <entry>
+    <title>PyTorch:MINIST数据集手写数字识别</title>
+    <link href="https://xxxnhb.github.io/2020/03/01/pytorch-mnist-shou-xie-shu-zi-shi-bie/"/>
+    <id>https://xxxnhb.github.io/2020/03/01/pytorch-mnist-shou-xie-shu-zi-shi-bie/</id>
+    <published>2020-03-01T13:35:59.000Z</published>
+    <updated>2020-05-17T03:50:04.789Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; torch
+&lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/categories/PyTorch/"/>
+    
+    
+      <category term="PyTorch" scheme="https://xxxnhb.github.io/tags/PyTorch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PyTorch深度学习：快速入门</title>
     <link href="https://xxxnhb.github.io/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/"/>
     <id>https://xxxnhb.github.io/2020/02/29/pytorch-shen-du-xue-xi-kuai-su-ru-men/</id>
