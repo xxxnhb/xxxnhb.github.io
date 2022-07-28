@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TBSI</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/set1.css"/>
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <link href="css/overwrite.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".navbar-collapse.collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <img src="img/wolt2022_logo.png" alt="logo" width="160px" height="40px" style=" margin-top: -5px;"/>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <div class="menu">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"><a href="index.html"><font size ='2'>About</font></a></li>
+                    <li role="presentation"><a href="program.html"><font size ='2'>Program</font></a></li>
+                    <li role="presentation"><a href="speaker.html"><font size ='2'>Speakers</font></a>></li>
+                    <!--<li role="presentation"><a href="alumni_forum.html"><font size ='2'>Alumni Forum</font></a></li>-->
+                    <!--<li role="presentation"><a href="registration.html"><font size ='2'>Registration</font></a></li>-->
+                    <li role="presentation" class="active"><a href="poster.html"><font size ='2'>Poster</font></a></li>
+                    <!-- <li role="presentation"><a href="sponsor.html"><font size ='2'>Sponsor</font></a></li> -->
+                    <li role="presentation"><a href="tbsiworkshops.html"><font size ='2'>TBSI Workshops</font></a></li>
+                    <li role="presentation"><a href="contact.html"><font size ='2'>Contact</font></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<br><br><br><br><br><br>
+
+<div class="w3-content w3-display-container">
+
+
+    <div class="w3-display-container mySlides">
+        <img src="img/slide1.jpeg" style="width:100%;width: 1000px;height: 500px">
+        <!--        <div class="text">-->
+        <!--            MOMENT1-->
+        <!--        </div>-->
+    </div>
+
+    <div class="w3-display-container mySlides">
+        <img src="img/slide2.jpeg" style="width:100%;width: 1000px;height: 500px">
+        <!--        <div class="text">-->
+        <!--            MOMENT2-->
+        <!--        </div>-->
+    </div>
+
+
+    <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = x.length
+        }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+</script>
+
+<div class="text-center">
+    <h2 style="font-weight: bold;">Student Posters Session</h2>
+    <p style="font-size: medium">
+        <span style="font-weight: bold;">OVERVIEW</span><br>
+        In this workshop, we also want  to give students a chance to present their work to experts and peers, and
+        receive creative insights. We explicitly encourage submissions of revolutionary concepts, path breaking ideas,
+        and ongoing research prototypes.
+        </br>
+        </br>
+        <i>Due to the global COVID-19 travel restrictions, accepted posters can be presented remotely. We encourage
+            local students from Shenzhen to present on site for the best conference experience. </i>
+    </p>
+    <p style="font-size: medium">
+        <span style="font-weight: bold;">IMPORTANT DATES</span></br>
+        <b>Submission Deadline:  <font color="#FF0000"> July 25, 2022</font></b>
+        </br>
+        Poster Decision Date:  July 31, 2022
+        </br>
+        Presentation Day:      August 9, 2022
+        </br>
+        Each deadline is 23:59:59 AoE (Anywhere on Earth) == GMT/UTC-12:00 on the stated day, no matter where the submitter is located.
+        </br>
+        If you'd like to get involved or learn more, <a href="posters/Call for Posters WOLT2022.pdf">please click on the link</a>.
+    </p>
+</div>
+
+<br>
+<div class="talks_section">
+    <h3 style="margin-top:-10px; font-weight: bold;">Poster Session Awards</h3>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table align="center" style="height: 60%" border="3">
+            <tr>
+                <td width="50%" valign="center" colspan="2"
+                    style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:16pt;">Best Oral Presentation Awards</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:12pt;">First Place</span></b><b><span
+                            style="font-size:12pt;"></span></b>
+                    </p>
+                </td>
+                <td width="75%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:left;">
+                        <span style="font-size:12.0000pt;">1 person ＊ 2000RMB</span><span
+                            style="font-size:12.0000pt;"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:12pt;">Second Place</span></b><b><span
+                            style="font-size:12pt;"></span></b>
+                    </p>
+                </td>
+                <td width="75%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:left;">
+                        <span style="font-size:12.0000pt;">1 person ＊ 1500RMB</span><span
+                            style="font-size:12.0000pt;"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" valign="center" colspan="2"
+                    style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:16pt;">Best Poster Awards</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:12pt;">First Place</span></b><b><span
+                            style="font-size:12pt;"></span></b>
+                    </p>
+                </td>
+                <td width="75%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:left;">
+                        <span style="font-size:12.0000pt;">1 person ＊ 2000RMB</span><span
+                            style="font-size:12.0000pt;"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:12pt;">Second Place</span></b><b><span
+                            style="font-size:12pt;"></span></b>
+                    </p>
+                </td>
+                <td width="75%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:left;">
+                        <span style="font-size:12.0000pt;">1 person ＊ 1500RMB</span><span
+                            style="font-size:12.0000pt;"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:12pt;">Third Place</span></b><b><span
+                            style="font-size:12pt;"></span></b>
+                    </p>
+                </td>
+                <td width="75%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:left;">
+                        <span style="font-size:12.0000pt;">3 persons ＊ 500RMB</span><span
+                            style="font-size:12.0000pt;"></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="25%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:center;">
+                        <b><span style="font-size:12pt;">Participation Award</span></b><b><span
+                            style="font-size:12pt;"></span></b>
+                    </p>
+                </td>
+                <td width="75%" valign="center" style="border:1.0000pt solid windowtext;">
+                    <p align="center" style="text-align:left;">
+                        <span style="font-size:12.0000pt;">All participants</span><span
+                            style="font-size:12.0000pt;"></span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<hr>
+<hr>
+
+
+<!--
+<br>
+<div class="text-center">
+    <br>
+    <br>
+    <h3 style="font-weight: bold;margin-top: 60px">Student Posters</h3>
+    <br>
+    <div class="bio">
+        <style type="text/css">
+            .bio ul {
+                list-style-type: none;
+            }
+        </style>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Kuanqi Cai</b></li>
+            <li>Southern University of Science and Technology</li>
+            <li>
+                <b>Title: </b>
+                Human-aware Motion Planning with Improved Virtual Doppler Method in Highly Dynamic Environments
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Human-aware path planner is essential for achieving harmonious coexistence between humans and robots in highly dynamic environments. In this paper, we propose an integrated framework to find the optimal path in the complex environment with considering collision risk, social norms, and crowded areas. In the proposed framework, a general dynamic group model (g-space) based on the Gaussian Mixed Model (GMM) is proposed as the social norms of dynamic groups, which not only considers the factors of humans (e.g., pose, quantity, distribution, psychology) but also establishes the proximity and human interacting constraints of dynamic groups. An integrated Collision Risk and Human Space model is applied to achieve human-acceptable behaviors, in which both collision avoidance, human-comfort, and interference-free constraints have been involved. Moreover, an Improved Virtual Doppler Method has been used to realize safety navigation to avoid the robot falling into crowded areas. Finally, the proposed framework has been utilized with the sampling-based rapidly-exploring random tree. Experimental results demonstrate that the proposed method can generate the optimal human-aware collision-free path in complex environments.
+
+            </li>
+            <li><a href="posters/Kuanqi_Cai.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Ziwu Song (Oral Presentation)</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Object recognition based on TENG sensor
+            </li>
+            <li>
+                <b>Abstract: </b>
+                The tactile sense is as important as the vision for robots. But tactile sense carries much information that cannot be obtained by a single type of sensor. Here we propose a sensor based on triboelectric nanogenerator, which senses both materials and textures. Materials affect signals' amplitude, meanwhile, textures mainly affect signals' waveform, and 1DCNN deep learning model is used to extract hidden features in the coupling signals and a dataset of 8 materials and 13 textures was built. A system including sensors, embedded devices, wireless transmission, and android applications was built to help robot hands classify objects in real time.
+            </li>
+            <li><a href="posters/Ziwu_Song.pdf">download</a></li>
+        </ul>
+        <br>
+                <ul style="text-align: left">
+            <li style="font-size: large"><b>Zixin Zhong (Oral Presentation)</b></li>
+            <li>National University of Singapore, Singapore</li>
+            <li>
+                <b>Title: </b>
+                Probabilistic Sequential Shrinking A Best Arm Identification Algorithm for Stochastic Bandits with Corruptions
+            </li>
+            <li>
+                <b>Abstract: </b>
+                We consider a best arm identification (BAI) problem for stochastic bandits with adversarial corruptions
+                in the fixed-budget setting of T steps. We design a novel randomized algorithm, Probabilistic Sequential
+                Shrinking(u) (PSS(u)), which is agnostic to the amount of corruptions. When the amount of corruptions
+                per step (CPS) is below a threshold, PSS(u) identifies the best arm or item with probability tending
+                to 1 as T → ∞. Otherwise, the optimality gap of the identified item degrades gracefully with the CPS.
+                We argue that such a bifurcation is necessary. In PSS(u), the parameter u serves to balance between
+                the optimality gap and success probability. The injection of randomization is shown to be essential
+                to mitigate the impact of corruptions. To demonstrate this, we design two attack strategies that are
+                applicable to any algorithm. We apply one of them to a deterministic analogue of PSS(u) known as
+                Successive Halving (SH) by Karnin et al. [2013]. The attack strategy results in a high failure
+                probability for SH, but PSS(u) remains robust. In the absence of corruptions, PSS(2)’s performance
+                guarantee matches SH’s. We show that when the CPS is sufficiently large, no algorithm can achieve a
+                BAI probability tending to 1 as T → ∞. Numerical experiments corroborate our theoretical findings.
+
+
+            </li>
+            <li><a href="posters/Zixin_Zhong.pdf">download</a></li>
+        </ul>
+        <br>
+                <ul style="text-align: left">
+            <li style="font-size: large"><b>Yiming Li</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                t-k-means: A Robust and Stable k-means Variant
+            </li>
+            <li>
+                <b>Abstract: </b>
+                k-means algorithm is one of the most classical clustering methods, which has been widely
+                and successfully used in signal processing. However, due to the thin-tailed property of the
+                Gaussian distribution, k-means algorithm suffers from relatively poor performance on the
+                dataset containing heavy-tailed data or outliers. Besides, standard k-means algorithm also
+                has relatively weak stability, i.e. its results have a large variance, which reduces its
+                credibility. In this paper, we propose a robust and stable k-means variant, dubbed the
+                t-k-means, as well as its fast version to alleviate those problems. Theoretically,
+                we derive the t-k-means and analyze its robustness and stability from the aspect of
+                the loss function and the expression of the clustering center, respectively. Extensive
+                experiments are also conducted, which verify the effectiveness and efficiency of the
+                proposed method.
+            </li>
+            <li><a href="posters/Yiming_Li.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Xiangyu Chen</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Cyclically Equivariant Neural Decoders for Cyclic Codes
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Neural decoders were introduced as a generalization of the classic Belief Propagation (BP) decoding algorithms. In this work, We propose a novel neural decoder for cyclic codes by exploiting their cyclically invariant property. And we propose a list decoding procedure that can significantly reduce the decoding error probability for BCH codes and punctured RM codes. Extensive simulations show that our new decoder consistently outperforms previous neural decoders when decoding cyclic codes. For certain high-rate codes, the gap between our list decoder and the Maximum Likelihood decoder is less than 0.1dB.
+            </li>
+            <li><a href="posters/Xiangyu_Chen.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Zifeng Wang (Oral Presentation)</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Understanding Neural Networks by PAC Bayes Information Bottleneck
+            </li>
+            <li>
+                <b>Abstract: </b>
+                 Information bottleneck (IB) depicts a trade-off between the accuracy and conciseness of encoded representations. IB has succeeded in explaining the objective and behavior of neural networks (NNs) as well as learning better representations. However, there are still critics to the universality of IB, e.g., phase transition usually fades away, representation compression is not causally related to generalization, and IB is trivial in deterministic cases. In this work, we build a new IB based on the trade-off between the accuracy and complexity of learned weights of NNs. We argue that this new IB represents a more solid connection to the objective of NNs since the information stored in weights bounds their PAC-Bayes generalization capability, hence we name it as PAC-Bayes IB (PIB). On PIB, we can identify the phase transition phenomenon in general cases and solidify the causality between compression and generalization. We then derive a tractable solution of PIB and design a stochastic inference algorithm by Markov chain Monte Carlo sampling. We empirically verify our claims through extensive experiments. Moreover, we substantiate the superiority of the proposed algorithm on training better NNs.
+            </li>
+            <li><a href="posters/Zifeng_Wang.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Yuzhu Mao (Oral Presentation)</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Communication Efficient Federated Learning with Adaptive Quantization
+            </li>
+            <li>
+                <b>Abstract: </b>
+                We propose a communication-efficient FL framework with Adaptive Quantized Gradient (AQG) which adaptively adjusts the quantization level based on local gradient's update to fully utilize the heterogeneousness of local data distribution for reducing unnecessary transmissions. Besides, we take the client dropout issues into account and develop the Augmented AQG which could limit the dropout noise with amplification for transmitted gradients. Experimental results show that the proposed AQG leads to significant transmission reduction with heterogenous data distributions as compared to existing popular methods, and stays robust to a client dropping rate up to 90%.
+            </li>
+            <li><a href="posters/Yuzhu_Mao.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Yushun Zhang (Oral Presentation)</b></li>
+            <li>The Chinese University of Hong Kong, Shenzhen</li>
+            <li>
+                <b>Title: </b>
+                When Expressivity Meets Trainability: Width < n Can Work
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Training a narrow neural network remains challenging, due to (1) its nonconvex loss
+                landscape (trainability); (2) its possibly limited representation power (expressivity). In
+                this work, we shed new light to these two issues for 1-hidden-layer networks with
+                width < n (sample size). We show that: when the network is not too narrow, there exists a global-min with zero loss (strong expressivity) with no local-min or saddles
+                around it (trainability). Further, we propose a constrained training regime, where KKT condition implies near-zero-loss solution. Our training regime significantly improves the numerical performance of narrow networks.
+
+            </li>
+            <li><a href="posters/Yushun_Zhang.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Tianjian Zhang</b></li>
+            <li>The Chinese University of Hong Kong, Shenzhen</li>
+            <li>
+                <b>Title: </b>
+                Fast Generic Interaction Detection for Model Interpretability and Compression
+            </li>
+            <li>
+                <b>Abstract: </b>
+                The ability of discovering feature interactions in a black‐box model is vital to explainable deep learning. We propose a principled, global interaction detection method by casting our target as a multi‐arm bandits problem and solving it swiftly with the UCB algorithm. This adaptive method is free of ad‐hoc assumptions and among the cutting‐edge methods with outstanding detection ac‐ curacy and stability. Based on the detection outcome, a lightweight and interpretable deep learning model (called ParaACE) is further built using the alternating conditional expectation (ACE) method. Our proposed ParaACE improves the prediction performance by 26% and reduces the model size by 100+ times as compared to its Teacher model over various datasets. Furthermore, we show the great potential of our method for scientific discovery through interpreting various real datasets in the economics and smart medicine sectors.
+            </li>
+            <li><a href="posters/Tianjian_Zhang.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Zhendong Shi</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                PDE-Net: Deep Learning of Stochastic partial differential equation from data
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Partial differential equations (PDEs) are commonly derived based on empirical observations. However, recent advances of technology enable us to collect and store massive amount of data, which offers new opportunities for data-driven discovery of PDEs. In this research, we introduce a new deep neural network to discover (time-dependent) PDEs from observed dynamic data with minor prior knowledge on the underlying mechanism that drives the dynamics even in a noisy environment and show its principles.
+                <br>
+                Based on the model, we quantify uncertainties of the neural network and prove the feasibility of the model through numerical studies on Black-Scholes equation.
+
+            </li>
+            <li><a href="posters/Zhendong_Shi.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Zihao Zhou</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Few-Shot Cross Domain Battery Capacity Estimation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                • Accurate capacity estimation is essential in a board range of battery applications.
+                <br>
+                • Existing supervised learning works can’t deal with the dsitribution shifts problem in capacity estimation.
+                <br>
+                • A semi-supervised joint distribution optimal transport (semi-JDOT)
+                model is proposed, which can effectively solve the distribution shift problem.
+                <br>
+                • Comprehensive experiments on two pairs of different battery data
+                sets are conducted. The results demonstrate the effectiveness of our proposed methods.
+            </li>
+            <li><a href="posters/Zihao_Zhou.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Jingge Wang</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Class-conditioned Domain Generalization via Wasserstein Distributional Robust Optimization
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Given multiple source domains, domain generalization aims at learning a model that performs well on an unseen target domain. We focus on the scenario where domain shifts occur among class-conditionals of different domains. Existing approaches are not sufficiently robust when the variation of conditional distributions is large. We extend distributional robust optimization to solve the class-conditional domain generalization problem. Our approach optimizes the worst-case performance of a classifier within a Wasserstein ball centered around the barycenter of the source class-conditionals. We realized trade-off between robustness and discriminability using Wasserstein distance constraints. Experiments show promising results on simulated and real data.
+            </li>
+            <li><a href="posters/Jingge_Wang.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Qi Wan</b></li>
+            <li>Shenzhen University</li>
+            <li>
+                <b>Title: </b>
+                Self-attention based Text Knowledge Mining for Text Detection
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Pre-trained models play an important role in deep learning based text detectors. In this paper，we propose STKM (Self-attention based Text Knowledge Mining）, which guides the CNN backbone to explicitly learn discriminative semantic representations ignored by previous approaches. The text knowledge learned by the backbone can be transferred to various text detectors to significantly improve their detection performance without bells and whistles.
+            </li>
+            <li><a href="posters/Qi_Wan.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Xiaokang Zhang</b></li>
+            <li>Shenzhen University</li>
+            <li>
+                <b>Title: </b>
+                TextFace: Text-to-Style Mapping based Face Generation and Manipulation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                As a sub-topic of Text-to-Image synthesis, Text-to-Face generation has a great potential in face related applications. In this paper, we propose a generic Text-to-Face framework, namely TextFace, to achieve diverse and high-quality face image generation from text description. We introduce a novel method called Text-to-Style mapping, where the text description can be directly encoded into the latent space of a pretrained StyleGAN. Guided by our text-image similarity matching and face captioning based text alignment, the textual latent code can be fed into a well-trained StyleGAN's generator, to produce diverse face images with high resolution (1024×1024). Furthermore, our model inherently supports the semantic face editing using text descriptions. Finally, experimental results demonstrate the superior performance of our model both quantitatively and qualitatively.
+            </li>
+            <li><a href="posters/Xiaokang_Zhang.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Hanbang Liang</b></li>
+            <li>Shenzhen University</li>
+            <li>
+                <b>Title: </b>
+                SSFlow: Style-guided neural Spline Flows for Face Image Manipulation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                We propose SSFlow to achieve identity-preserved semantic face manipulation in StyleGAN latent space based on conditional Neural Spline Flows (cNSF). To improve cNSF, we propose ConstractiveSquash component and Blockwise 1 X 1 Convolution layer. Moreover, unlike other conditional flow-based approaches that require facial attribute labels during inference, our method can achieve label free manipulation in a more flexible way. As a result, our methods are able to perform well-disentangled edits along various attributes, and generalize well for both real and artistic face image manipulation.
+            </li>
+            <li><a href="posters/Hanbang_Liang.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Jinheng Xie</b></li>
+            <li>Shenzhen University</li>
+            <li>
+                <b>Title: </b>
+                Online Refinement of Low-level Feature Based Activation Map for Weakly Supervised Object Localization
+            </li>
+            <li>
+                <b>Abstract: </b>
+                We present a two-stage learning framework for weakly supervised object localization (WSOL). While most previous efforts rely on high-level feature based CAMs (Classification Activation Maps), this paper proposes to localize object using the low-level feature based activation maps. In the first stage, an activation map generator produces activation maps based on the low-level feature maps in the classifier, such that rich contextual object information is included in an online manner. In the second stage, we employ an evaluator to evaluate the activation maps predicted by the generator. Based on this, we further propose a weighted entropy loss, an attentive erasing, and an area loss to drive the generator to substantially reduce the uncertainty of activations between object and background, and explore less discriminative regions. Based on the low level object information preserved in the first stage, the second stage model gradually generates a well-separated, complete, and compact activation map of object in the image, which can be easily thresholded for accurate localization. Extensive experiments on CUB-200-2011 and ImageNet-1K datasets show that our framework surpasses previous methods by a large margin, which sets a new state-of-the-art for WSOL.
+            </li>
+            <li><a href="posters/Jinheng_Xie.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Zilong Shao (Oral Presentation)</b></li>
+            <li>Shenzhen University</li>
+            <li>
+                <b>Title: </b>
+                Personality Recognition by Modelling Person-specific Cognitive Processes using Graph Representation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Recent research shows that in dyadic and group interactions individuals’ nonverbal behaviours are influenced by the behaviours of their conversational partner(s). Therefore, in this work we hypothesise that during a dyadic interaction, the target subject’s facial reactions are driven by two main factors: (i) their internal (personspecific) cognition, and (ii) the externalised nonverbal behaviours of their conversational partner. Subsequently, our novel proposition is to simulate and represent the target subject’s (i.e., the listener) cognitive process in the form of a person-specific CNN architecture whose input is the audio-visual non-verbal cues displayed by the conversational partner (i.e., the speaker), and the output is the target subject’s (i.e., the listener) facial reactions. We then undertake a search for the optimal CNN architecture whose results are used to create a person-specific graph representation for recognising the target subject’s personality. The graph representation, fortified with a novel end-to-end edge feature learning strategy, helps with retaining both the unique parameters of the person-specific CNN and the geometrical relationship between its layers. Consequently, the proposed approach is the first work that aims to recognize the true (self-reported) personality of a target subject (i.e., the listener) from the learned simulation of their cognitive process (i.e., parameters of the person-specific CNN). The experimental results show that the CNN architectures are well associated with target subjects’ personality traits and the proposed approach clearly outperforms multiple existing approaches that predict personality directly from non-verbal behaviours. In light of these findings, this work opens up a new avenue of research for predicting and recognizing socioemotional phenomena (personality, affect, engagement etc.) from simulations of person-specific cognitive processes.
+            </li>
+            <li><a href="posters/Zilong_Shao.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Yongpei Zhu</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                BCAU-Net : A Novel Architecture with Binary Channel Attention Module for MRI Brain Segmentation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Deep learning-based networks have achieved advanced performance in magnetic resonance image segmentation of normal brain tissues. Here, we propose a new architecture, Binary Channel Attention U-Net (BCAU-Net), by introducing a novel Binary Channel Attention Module into skip connection of U-Net, which can take full advantages of the channel information extracted from the encoding and corresponding decoding path. To better aggregate multi-scale spatial information of the feature map, spatial pyramid pooling (SPP) modules with different pooling operations are used in BCAM. We verify this model on IBSR and MRBrainS18, and obtain better performance on MRI brain segmentation compared with other methods.
+            </li>
+            <li><a href="posters/Yongpei_Zhu.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Haoqin Ji</b></li>
+            <li>Shenzhen University</li>
+            <li>
+                <b>Title: </b>
+                Reasonable Object Detection Guided by Knowledge of Global Context and Category Relationship
+            </li>
+            <li>
+                <b>Abstract: </b>
+                The mainstream object detectors usually treat each region separately, which overlooks the important global context information and the associations between object categories.We propose KROD (Knowledge-guided Reasonable Object Detection),which consists of the GKM (Global Category Knowledge Mining) module and CRM (Category Relationship Knowledge Mining) module, to improve detection performance by mimicking the processes of human reasoning. Without bells and whistles, extensive experiments show that the proposed KROD can improve different baseline models (both anchor-based and anchor-free) by a large margin(1.2% ∼ 1.8% higher AP) with marginal loss of efficiency on MS COCO.
+            </li>
+            <li><a href="posters/Haoqin_Ji.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Yaping Zhao</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Cross Camera Reference based Video Processing and Synthesis
+            </li>
+            <li>
+                <b>Abstract: </b>
+                We propose several cross¬camera reference¬based video processing and synthesis algorithms. Fusing images captured by cameras with different configurations, dual-camera systems achieve better imaging performance in capturing videos.
+                Main innovative achievements include:
+                <br>
+                1. A reference¬based human¬centric video super¬resolution algorithm for global¬plus-local dual¬camera systems is proposed to synthesize high¬resolution human¬centric videos via human motion analysis.
+                <br>
+                2. A general reference¬based video super¬resolution algorithm is proposed to enhance the resolution and flexibility of imaging systems.
+                <br>
+                3. A reference¬based colorization algorithm for multi¬dimensional image fusion across different resolutions, frame rates, and spectrums is proposed to facilitate high spectral and spatial resolution imaging.
+
+            </li>
+            <li><a href="posters/Yaping_Zhao.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Yicong Li</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Multi-Source Transfer Learning for Medical Image Segmentation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Many medical image segmentation tasks suffer from limited number of training data. Though transfer learning from pretrained models of large-scale datasets can improve the performance of models on some target tasks, many tasks are still difficult to learn due to large domain and /or task differences. To tackle this issue, we propose a multi-source transfer learning framework that consists of three stages: sources selection, domain adaptation, and feature fusion. With this framework, we aim to systematically utilize source tasks to achieve better performance on the target task.
+            </li>
+            <li><a href="posters/Yicong_Li.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Yingru Li</b></li>
+            <li>The Chinese University of Hong Kong, Shenzhen</li>
+            <li>
+                <b>Title 1: </b>
+                Divergence-Augmented Policy Optimization
+            </li>
+            <li>
+                <b>Abstract 1: </b>
+                In deep reinforcement learning, policy optimization methods need to deal with function approximation and the reuse of off-policy data. Standard policy gradient methods do not handle off-policy data well, leading to premature convergence and instability. This paper introduces a method to stabilize policy optimization when off-policy data are reused. The idea is to include a Bregman divergence between the behavior policy that generates the data and the current policy to ensure small and safe (conservative) policy updates with off-policy data. The Bregman divergence is calculated between the state distributions of two policies instead of only on the action probabilities, leading to a divergence augmentation formulation. Empirical experiments on Atari games show that in the data-scarce scenario where the reuse of off-policy data becomes necessary, our method can achieve better performance than other state-of-the-art deep reinforcement learning algorithms.
+            </li>
+            <li><a href="posters/Yingru_Li_1.pdf">download</a></li>
+            <li>
+                <b>Title 2: </b>
+                Is Posterior Sampling Reinforcement Learning Near-optimal?
+            </li>
+            <li>
+                <b>Abstract 2: </b>
+                We study model-based reinforcement learning (RL) with function approximation and randomized
+                exploration.Specifically, we study the algorithm posterior sampling reinforcement learning
+                (PSRL) and ask a natural question: is PSRL provably near-optimal? We answer this question
+                affirmatively.For linear function approximation, we establish an
+                O<sup>&tilde;</sup>(dH &#8730;T) Bayesian regret bound for PSRL, where d is the ambient
+                dim, H is the planning horizon and T is the number of interactions.Our upper bound is
+                the first one showing PSRL can achieve the minimax lower bound
+                 	&Omega;(dH &#8730;T)  up to alogarithmic factor.For linear function approximation,
+                we establish an O<sup>&tilde;</sup>(H&#8730;d<sub>E</sub>d<sub>K</sub>T) Bayesian regret bound which
+                improves &#8730;H factor compared with the bound in [OVR14]. As an
+                implication from the general bound, it is the first time PSRL can be shown to
+                achieve tight dependence in H for tabular setting since PSRL was proposed in 2000.
+            </li>
+            <li><a href="posters/Yingru_Li_2.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Hao Liang</b></li>
+            <li>The Chinese University of Hong Kong, Shenzhen</li>
+            <li>
+                <b>Title: </b>
+                Model-based Distributional Reinforcement Learning for Risk-sensitive Control
+            </li>
+            <li>
+                <b>Abstract: </b>
+                We consider finite episodic Markov decision processes aiming at the exponential utility (EU) of return for risk-sensitive control. We identify several properties of EU that enables distributional dynamic programming. We propose a model-based distributional reinforcement learning algorithm that implements the principle of optimism in the face of uncertainty, which achieves exponential improvements compared with existing works. Furthermore, we correct and tighten the minimax lower bound. Finally, we develop distributional simulation lemma which may be of independent interest.
+            </li>
+            <li><a href="posters/Liang_Hao.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Tian Xu</b></li>
+            <li>Nanjing University & The Chinese University of Hong Kong, Shenzhen</li>
+            <li>
+                <b>Title: </b>
+                Error Bounds of Imitating Policies and Environments for Reinforcement Learning
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Imitation learning (IL) trains a policy efficiently by mimicking expert demonstrations. The theoretical understandings of IL methods need further studies, among which the compounding error in long-horizon decisions is a major issue. Firstly, we analyze the value gap between the expert policy and imitated policies by behavioral cloning (BC) and generative adversarial imitation learning (GAIL). The results support that GAIL can reduce the compounding error compared to BC. Furthermore, we establish the lower bounds of IL under two settings, suggesting the significance of environment interactions in IL. By considering the environment transition model as a dual agent, IL can also be used to learn the environment model. We further analyze the performance of imitating environments. We obtain a policy evaluation error that is linear with the effective planning horizon w.r.t. the model bias, suggesting a novel application of adversarial imitation for model-based reinforcement learning (MBRL).
+            </li>
+            <li><a href="posters/Tian_Xu.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Ziniu Li</b></li>
+            <li>The Chinese University of Hong Kong, Shenzhen</li>
+            <li>
+                <b>Title 1: </b>
+                Efficient Exploration by HyperDQN in deep reinforcement learning
+            </li>
+            <li>
+                <b>Abstract 1: </b>
+                Efficient exploration is crucial to sample efficient reinforcement learning (RL). In this paper, we present a scalable exploration method called HyperDQN, which builds on the famous Deep Q-Network (DQN) and extends the idea of hyper model for RL. In particular, HyperDQN maintains a probabilistic meta-model that captures the epistemic uncertainty of the Q-value function over the parameter space. This meta-model samples randomized Q-value functions, which will generate exploratory action sequences for deep exploration. The numerical results demonstrate that the developed approach can lead to efficient exploration with limited computation resources.
+            </li>
+            <li><a href="posters/Ziniu_Li_1.pdf">download</a></li>
+            <li>
+                <b>Title 2: </b>
+                Nearly Minimax Optimal Adversarial Imitation Learning with Known and Unknown Transitions
+            </li>
+            <li>
+                <b>Abstract 2: </b>
+                We design provably efficient adversarial imitation learning (AIL) algorithms that directly optimize policies from expert demonstrations. Firstly, we develop a transition-aware AIL algorithm named TAIL, which improves upon the best previous bound of for AIL methods and matches the lower bound of in [Rajaraman et al., 2021] up to a logarithmic factor.  Secondly, considering practical settings where the transition functions are usually unknown but environment interaction is allowed, we accordingly develop a model-based transition-aware AIL algorithm named MB-TAIL. The interaction complexity of MB-TAIL improves the best-known result in [Shani et al., 2021].
+            </li>
+            <li><a href="posters/Ziniu_Li_2.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Xue Yan</b></li>
+            <li>University College London</li>
+            <li>
+                <b>Title: </b>
+                Estimating 	&alpha;-Rank from A Few Entries with Low Rank Matrix Completion
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Multi-agent evaluation assesses an agent's strategy based on interaction with others. Typically,
+                existing methods such as &alpha;-rank and its approximation still require exhaustively compare
+                all pairs of joint strategies for an accurate ranking. In this paper, we aim to reduce the number
+                of pairwise comparisons in recovering a satisfying ranking of strategies in two-player meta-games.
+                We leverage low-rank matrix completion and design two novel algorithms for noisy and noise-free
+                settings respectively. For both settings, we theorize that O(nr*log(n)) pairs are required to
+                achieve sufficiently well performance. Empirical results demonstrate that evaluation from partial
+                entries can generate satisfactory performance.
+            </li>
+            <li><a href="posters/Yali_Du_Xue_Yan.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Maverick Lim</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Modeling SARS CoV 2 virus mutations as a Markov Chain embedded Poisson Process
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Accurate predictions of virus mutations allow us to be better equipped when dealing with the COVID-19 pandemic that has been ravaging the world for over a year. There is an ongoing race to keep producing efficacious vaccines in order to keep up with the mutation of new SARS-CoV-2 virus strains that threaten to render existing vaccines obsolete. This study seeks to provide an accurate prediction of SARS-CoV-2 virus mutations by modeling it as a Markov Chain embedded Poisson random process. It analyzes phylogenetic data from the GISAID global database, comprised of virus RNA sequences submitted from labs around the world.
+            </li>
+            <li><a href="posters/Maverick_Lim.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Vinicius Lourenco</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Markov Chain Artificial Neural Networks Applied to Music Generation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                We bring a Markov Chain Neural Network (MCNN) application in music generation. The experiment used 371 chorales from J. Sebastian Bach as dataset. The music notes distribution are used to build a Markov Chain Transition Matrix, used later as base to build the training data. After training the MCNN, we input a first note and the network acts as a Markov Chain predicting the next state given a random variable plus the input note. As a result, we produced a random walk for initial tests and then random music.
+            </li>
+            <li><a href="posters/Vinicius_Lourenco.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Poorich Chatchaipaiboon</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Vehicle Routing Using Simulated Annealing with Cauchy Acceptance Criterion
+            </li>
+            <li>
+                <b>Abstract: </b>
+                This study compares Boltzmann and Cauchy's acceptance criterion in a simulated annealing algorithm to solve vehicle routing problems (VRP). Also, the initial states setting compare between randomly setting and using cluster information by k-means algorithm. The embedded cluster structure is introduced in the neighborhood search criterion to explore nearly optimal. The proposed algorithm is tested on different scales. The results show that the Cauchy SA algorithm can escape local minima and has efficiency converge in terms of shorter iterations. In addition, the guided cluster neighborhood search has the potential to further improved cost.
+            </li>
+            <li><a href="posters/Poorich_Chatchaipaiboon.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Hengyuan Miao</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Non-homogeneous Poisson and Renewal Processes as Spatial Models for Cancer Mutation
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Advances in sequencing technology assisted biologists in revealing signatures of cancer mutation process in the DNA and demonstrating mutagensis behind. However, signatures focus on type and frequency of mutation without paying more attention to spatial information which is valuable in exploring mechanisms of mutation occurrence, e.g. Kataegis. One common approach to capture spatial information is measuring distances between consecutive mutations along the whole DNA sequence, but such analysis method threw away location information which is as important as distance information. In this work, we propound that cancer mutation is location dependent and incorporating it with distance between consecutive somatic mutation can help study cancer mutation process more accurately. Particularly, for specific types of cancer, we found that distribution of inter-occurrence distance change between power-law and exponential distribution at least one time across the whole DNA sequence rather than stay in one type distribution all the time. Besides, parameters for either one type distribution of inter-occurrence distance are still changed with dierent location. Kataegis, a specific mutation pattern caused by abnormal activity of APOBEC protein family, appeared in cancer mutation process would enrich what we have found. Therefore, specific types of cancer mutation process is a non-homogeneous Poisson and Rnenwal processes and these findings could be used to identify cancer mutation pattern more accurately.
+
+            </li>
+            <li><a href="posters/Hengyuan_Miao.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Hengxi Zhang (Oral Presentation)</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Markov Decision Process based Resource Allocation in V2X Communication Networks with Poisson Traffic
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Vehicle-to-everything (V2X) communication networks can satisfy the high efficiency in providing entertainment applications and advanced driving service. In this work, the sharing of the spectrum and transmission power in vehicular networks is modeled as a resource allocation problem. In summary, the main contributions are as follows: 1) A Poisson traffic is proposed for testing the efficiency of V2X communication network. 2) A Markov Decision Process is designed to maximize the capacity for high bandwidth content delivery and improve payload delivery reliability. 3) A neural network named Deep Q-Network (DQN) with experience replay is established for improving the performance of Q-learning.
+            </li>
+            <li><a href="posters/Hengxi_Zhang.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Nan Shen & Qiqi Chen</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                News Text Classification Based on BERT and Relevant Promotions
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Using different models and improved algorithms, we try to classify news texts. The results of mod- els are compared and analyzed.
+                <br>
+                • Distributions of training and test data sets are basically the same, and both have obvious long tail phenomena.
+                <br>
+                • BERT, a pre-training and fine tuning model, can effectively improve accuracy of predictions.
+                <br>
+                • Parameter adjustment and model superposition are effective means.
+
+            </li>
+            <li><a href="posters/Nan_Shen_Qiqi_Chen.pdf">download</a></li>
+        </ul>
+        <br>
+        <ul style="text-align: left">
+            <li style="font-size: large"><b>Yongchi Zhu</b></li>
+            <li>Tsinghua-Berkeley Shenzhen Institute, Tsinghua University</li>
+            <li>
+                <b>Title: </b>
+                Chinese NER for Processing Resume Text
+            </li>
+            <li>
+                <b>Abstract: </b>
+                Traditional Chinese word segmentation methods based on machine learning have some problems when faced with Chinese Named Entity Recognition problems, such as low accuracy, high dependence on feature design and poor adaptability. In this presentation, we will demonstrate how current Named Entity Recognition (NER) models such as HMM, BiLSTM and CRF models are applied and improved to segment and label Chinese semi-structure text like Chinese resume entries.
+            </li>
+            <li><a href="posters/Yongchi_Zhu.pdf">download</a></li>
+        </ul>
+        <br>
+    -->
+</div>
+
+
+<footer>
+    <div class="inner-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 f-about">
+                    <a href="https://www.tbsi.edu.cn/en/"><h1><span>T</span>BSI</h1></a>
+                    <p style=" margin-top: -30px;"><a href="https://www.tbsi.edu.cn/en/">Tsinghua-Berkeley Shenzhen
+                        Institute (TBSI)</a> is jointly established in
+                        2015 by Tsinghua University and University of California, Berkeley under the support of the
+                        Shenzhen Municipal Government. Its mission is to pursue interdisciplinary research,
+                        international education and industrial partnership, and it is committed to cultivating
+                        collaboration between academia, industry and government.</p>
+                </div>
+                <div class="col-md-4 l-posts">
+                    <h3 class="widgetheading" id="news">News</h3>
+                    <ul id="new-list">
+                        <li>●(6/27/2022) Recent website update released.</li>
+                        <li>●(7/27/2022) Speaker and program information are updated</li>
+                        <!--<li>●(6/17/2021)  <a href="poster.html"> <u>Poster Submission Deadline</u></a>  has been extended to June 25, 2021 12:00pm (noon)</li>-->
+                        <!--                                                <li>●(12/20/2019) Moments are updated.</li>-->
+                        <!--                                                <li>●(12/20/2019) Boffin Talks Competition Awards are updated.</li>-->
+                        <!--                                                <li>●(12/14/2019) Program information is updated.</li>-->
+                        <!--                                                <li>●(11/26/2019) The Night Owl AI Hackathon has been rescheduled to Friday, Dec 20th to avoid time conflict with classes.</li>-->
+                        <!--                                                <li>●(11/18/2019) <a href="competition.html"> <u>Student competition</u></a> deadline is extended to Nov 24, 2019. BoffinTalk award information is updated!</li>-->
+                        <!--                                                <li>●(11/11/2019)  <a href="competition.html"><u>Student competition</u></a> information is updated. Register by Nov 17!  </li>-->
+                        <!--                                                <li>●(11/2/2019)  <a href="attend.html"><u>Workshop Registration</u></a>  is open! </li>-->
+                    </ul>
+                </div>
+                <div class="col-md-4 f-contact">
+                    <h3 class="widgetheading">Contact Us</h3>
+                    <a href="mailto:lishengnan@sz.tsinghua.edu.cn"><p style="padding-top: 0;">Shengnan Li <br><i
+                            class="fa fa-envelope"> lishengnan@sz.tsinghua.edu.cn</i></p></a>
+                    <!--                    <a href="mailto:zhong.shulin@sz.tsinghua.edu.cn"><p style="padding-top: 0;">Shulin Zhong <br><i-->
+                    <!--                            class="fa fa-envelope"> zhong.shulin@sz.tsinghua.edu.cn</i></p></a>-->
+                    <!--<p><i class="fa fa-phone"></i>(+86)0755-36881032</p>-->
+                    <p><i class="fa fa-home"></i> Information building, Tsinghua Shenzhen International Graduate School,
+                        Lishui Road, Nanshan District, Shenzhen,Guangdong Province</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="last-div">
+        <div class="container">
+            <div class="row">
+                <div class="copyright">
+                    © 2022 Tsinghua University</a>
+                </div>
+                <!--
+                    All links in the footer should remain intact.
+                    Licenseing information is available at: http://bootstraptaste.com/license/
+                    You can buy this theme without footer links online at: http://bootstraptaste.com/buy/?theme=eNno
+                -->
+            </div>
+        </div>
+
+        <a href="" class="scrollup"><i class="fa fa-chevron-up"></i></a>
+    </div>
+</footer>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.isotope.min.js"></script>
+<script src="js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="js/fliplightbox.min.js"></script>
+<script src="js/functions.js"></script>
+<script type="text/javascript">$('.portfolio').flipLightBox()</script>
+</body>
+</html>
